@@ -1,115 +1,70 @@
-import { Globe, Building2, Handshake, ExternalLink } from 'lucide-react';
+'use client';
 
-const events = [
+import { useEffect, useRef } from 'react';
+
+const images = [
   {
-    year: '2025',
-    title: 'OpenMind Middle East Global Expansion & COMEX Oman Forum',
-    subtitle: '聚焦中东出海 — 暨2025中东阿曼信息通讯与技术博览会中国区发布会',
-    description:
-      'A landmark event connecting China and the Middle East, featuring strategic partnerships with COMEX Oman and the Arab Research Bureau (ARB). OpenMind officially opened the door for Chinese enterprises entering the Middle East market.',
-    highlights: [
-      'Strategic partnership with COMEX Oman',
-      'Speakers from ARB, Dubai IFZA, Alibaba, and more',
-      'B2B matchmaking for China-Middle East business',
-      'Focus on Oman Vision 2040 & Saudi Vision 2030',
-    ],
-    location: 'Shanghai, China',
-    icon: Globe,
-    link: 'https://mp.weixin.qq.com/s/bEbS4LMsRpF0d7lsJlnVkg',
+    src: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    alt: 'OpenMind Middle East Forum 2025',
   },
   {
-    year: '2025',
-    title: 'OpenMind China-Middle East Innovation & Investment Forum',
-    subtitle: '中东出海与创新系列 — 深度洞察数字经济与智慧城市机遇',
-    description:
-      'An in-depth forum exploring digital economy, smart city development, and market entry strategies across the Middle East region. Expert insights on regulatory environments and investment trends for Chinese enterprises.',
-    highlights: [
-      'Deep dive into Middle East digital economy',
-      'Policy and regulatory guidance for market entry',
-      'Smart city and ICT development strategies',
-      'Cross-border partnership facilitation',
-    ],
-    location: 'Shanghai, China',
-    icon: Building2,
-    link: 'https://mp.weixin.qq.com/s/EwfQ7HxZt8acMPqHr_MecA',
+    src: 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    alt: 'OpenMind COMEX Oman Forum 2025',
+  },
+  {
+    src: 'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    alt: 'OpenMind Event Panel Discussion',
+  },
+  {
+    src: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    alt: 'OpenMind Networking Session',
+  },
+  {
+    src: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    alt: 'OpenMind Keynote Session',
   },
 ];
 
 export default function PastEvents() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let frame: number;
+    const speed = 0.5;
+    const step = () => {
+      el.scrollLeft += speed;
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+        el.scrollLeft = 0;
+      }
+      frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-3">
-            Our Track Record
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Past Events
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            OpenMind Events has a proven track record of delivering high-impact forums that connect global leaders and drive real business outcomes.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8">
-          {events.map((event, i) => (
-            <div
-              key={i}
-              className="bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-xl p-7 hover:shadow-lg hover:border-[#2563eb]/20 transition-all group"
-            >
-              <div className="flex items-start gap-4 mb-5">
-                <div className="w-12 h-12 bg-[#2563eb]/10 border border-[#2563eb]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <event.icon size={22} className="text-[#2563eb]" />
-                </div>
-                <div>
-                  <span className="text-[#2563eb] text-xs font-semibold tracking-wider uppercase">
-                    {event.year}
-                  </span>
-                  <h3 className="font-bold text-gray-900 text-base leading-snug mt-0.5 group-hover:text-[#2563eb] transition-colors">
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-500 text-xs mt-0.5">{event.subtitle}</p>
-                </div>
-              </div>
-
-              <p className="text-gray-700 text-sm leading-relaxed mb-5">
-                {event.description}
-              </p>
-
-              <div className="grid grid-cols-2 gap-2 mb-5">
-                {event.highlights.map((h, j) => (
-                  <div key={j} className="flex items-start gap-1.5">
-                    <Handshake size={12} className="text-[#2563eb] flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-600 text-xs leading-snug">{h}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <span className="text-gray-500 text-xs flex items-center gap-1">
-                  <Building2 size={12} />
-                  {event.location}
-                </span>
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[#2563eb] text-xs font-medium hover:gap-2 transition-all"
-                >
-                  View Details
-                  <ExternalLink size={12} />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <p className="text-gray-500 text-sm">
-            OpenMind is committed to creating platforms where ideas meet opportunity.{' '}
-            <span className="text-[#2563eb] font-medium">More events coming soon.</span>
-          </p>
-        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Previous Events</h2>
+      </div>
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-hidden px-4 sm:px-6 lg:px-8"
+      >
+        {images.map((img, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 w-72 sm:w-80 lg:w-96 rounded-xl overflow-hidden"
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-48 sm:h-52 object-cover"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
