@@ -23,16 +23,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 bg-[#2563eb] rounded flex items-center justify-center">
-                <span className="text-white font-bold text-sm">OM</span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center">
+                <div className="bg-[#2563eb] rounded flex items-center justify-center px-2 py-1.5">
+                  <span className="text-white font-bold text-sm tracking-wider">OME</span>
+                </div>
+                <div className="bg-gray-900 rounded flex items-center justify-center px-2 py-1.5 ml-0.5">
+                  <span className="text-white font-bold text-sm tracking-wider">JR</span>
+                </div>
               </div>
               <div>
-                <span className="text-gray-900 font-bold text-base tracking-tight leading-none block">
-                  OpenMind
+                <span className="text-gray-900 font-bold text-sm tracking-tight leading-none block">
+                  OpenMind Events
                 </span>
-                <span className="text-[#2563eb] text-[10px] uppercase tracking-widest leading-none">
-                  Events
+                <span className="text-[#2563eb] text-[9px] uppercase tracking-widest leading-none">
+                  By JR Group
                 </span>
               </div>
             </div>
@@ -48,7 +53,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-[#2563eb]" />
-                <span>+1 (000) 000-0000</span>
+                <span>+86 13817550309</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-[#2563eb]" />
@@ -111,7 +116,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
-          <p>&copy; 2026 OpenMind Events. All Rights Reserved.</p>
+          <p>&copy; 2026 OpenMind Events by JR Group. All Rights Reserved.</p>
           <div className="flex gap-5">
             <a href="#" className="hover:text-gray-900 transition-colors">
               Privacy Policy

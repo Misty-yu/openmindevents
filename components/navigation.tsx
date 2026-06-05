@@ -41,16 +41,21 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div className="w-8 h-8 bg-[#2563eb] rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">OM</span>
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+            <div className="flex items-center">
+              <div className="bg-[#2563eb] rounded flex items-center justify-center px-2 py-1.5">
+                <span className="text-white font-bold text-sm tracking-wider">OME</span>
+              </div>
+              <div className="bg-gray-900 rounded flex items-center justify-center px-2 py-1.5 ml-0.5">
+                <span className="text-white font-bold text-sm tracking-wider">JR</span>
+              </div>
             </div>
-            <div>
-              <span className="text-gray-900 font-bold text-base tracking-tight leading-none block">
-                OpenMind
+            <div className="hidden sm:block">
+              <span className="text-gray-900 font-bold text-sm tracking-tight leading-none block">
+                OpenMind Events
               </span>
-              <span className="text-[#2563eb] text-[10px] uppercase tracking-widest leading-none">
-                Events
+              <span className="text-[#2563eb] text-[9px] uppercase tracking-widest leading-none">
+                By JR Group
               </span>
             </div>
           </Link>
@@ -74,7 +79,7 @@ export default function Navigation() {
               href="/contact"
               className="ml-4 px-5 py-2 bg-[#2563eb] text-white text-sm font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
             >
-              Register Interest
+              Join Waiting List
             </Link>
           </nav>
 
@@ -111,7 +116,7 @@ export default function Navigation() {
                 href="/contact"
                 className="block text-center px-5 py-2.5 bg-[#2563eb] text-white text-sm font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
               >
-                Register Interest
+                Join Waiting List
               </Link>
             </div>
           </div>
