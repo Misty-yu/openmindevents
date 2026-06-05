@@ -4,24 +4,24 @@ import { useEffect, useRef } from 'react';
 
 const images = [
   {
-    src: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-    alt: 'OpenMind Middle East Forum 2025',
+    src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'OpenMind Summit Stage & Podium',
   },
   {
-    src: 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-    alt: 'OpenMind COMEX Oman Forum 2025',
+    src: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e38?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'OpenMind Team & Leaders Networking',
   },
   {
-    src: 'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-    alt: 'OpenMind Event Panel Discussion',
+    src: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e39?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'OpenMind Speaker Presentation',
   },
   {
-    src: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-    alt: 'OpenMind Networking Session',
+    src: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e40?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'OpenMind Keynote Conference',
   },
   {
-    src: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-    alt: 'OpenMind Keynote Session',
+    src: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e41?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'OpenMind Event Attendees',
   },
 ];
 
@@ -46,8 +46,8 @@ export default function PastEvents() {
 
   return (
     <section className="py-14 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Previous Events</h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <h2 className="text-2xl font-bold text-gray-900">Our Previous Events</h2>
       </div>
       <div
         ref={scrollRef}
@@ -56,12 +56,13 @@ export default function PastEvents() {
         {images.map((img, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-72 sm:w-80 lg:w-96 rounded-xl overflow-hidden"
+            className="flex-shrink-0 w-72 sm:w-80 lg:w-96 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             <img
               src={img.src}
               alt={img.alt}
-              className="w-full h-48 sm:h-52 object-cover"
+              className="w-full h-48 sm:h-52 object-cover brightness-110 contrast-110"
+              loading="lazy"
             />
           </div>
         ))}
