@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Settings } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -76,6 +76,17 @@ export default function Navigation() {
               </Link>
             ))}
             <Link
+              href="/admin/media"
+              className={`px-3 py-2 text-sm font-medium rounded transition-colors ${
+                pathname === '/admin/media'
+                  ? 'text-[#2563eb] bg-blue-50'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              <Settings className="w-4 h-4 inline mr-1" />
+              媒体库
+            </Link>
+            <Link
               href="/contact"
               className="ml-4 px-5 py-2 bg-[#2563eb] text-white text-sm font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
             >
@@ -111,6 +122,17 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/admin/media"
+              className={`block px-3 py-2.5 text-sm font-medium rounded transition-colors ${
+                pathname === '/admin/media'
+                  ? 'text-[#2563eb] bg-blue-50'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              <Settings className="w-4 h-4 inline mr-1" />
+              媒体库
+            </Link>
             <div className="pt-2 pb-1">
               <Link
                 href="/contact"
