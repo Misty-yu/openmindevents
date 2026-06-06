@@ -1,5 +1,21 @@
 // Database types for OpenMind Summit
 
+// Storage bucket types
+export type StorageBucket = 'speakers-photos' | 'sponsor-logos' | 'event-images' | 'documents';
+
+export interface UploadResult {
+  path: string;
+  publicUrl: string;
+  fullPath: string;
+}
+
+export interface FileUpload {
+  file: File;
+  bucket: StorageBucket;
+  path?: string;
+}
+
+// Database types
 export interface Speaker {
   id: string;
   name: string;

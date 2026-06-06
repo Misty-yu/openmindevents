@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { uploadSpeakerPhoto, uploadSponsorLogo } from './storage';
 import {
   Speaker,
   Sponsor,
@@ -51,6 +52,44 @@ export async function createSpeaker(speaker: Omit<Speaker, 'id' | 'created_at' |
   return data;
 }
 
+export async function createSpeakerWithPhoto(
+  speaker: Omit<Speaker, 'id' | 'created_at' | 'updated_at' | 'photo_url'>,
+  photoFile?: File
+): Promise<Speaker> {
+  // Create speaker first
+  const { data, error } = await supabase
+    .from('speakers')
+    .insert([speaker])
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  // Upload photo if provided
+  if (photoFile && data.id) {
+    try {
+      const photoUrl = await uploadSpeakerPhoto(photoFile, data.id);
+
+      // Update speaker with photo URL
+      const { data: updated, error: updateError } = await supabase
+        .from('speakers')
+        .update({ photo_url: photoUrl, updated_at: new Date().toISOString() })
+        .eq('id', data.id)
+        .select()
+        .single();
+
+      if (updateError) throw updateError;
+      return updated;
+    } catch (uploadError) {
+      // Photo upload failed, but speaker was created
+      console.error('Photo upload failed:', uploadError);
+      return data;
+    }
+  }
+
+  return data;
+}
+
 // ============= SPONSORS =============
 
 export async function getSponsors(): Promise<Sponsor[]> {
@@ -83,6 +122,44 @@ export async function createSponsor(sponsor: Omit<Sponsor, 'id' | 'created_at' |
     .single();
 
   if (error) throw error;
+  return data;
+}
+
+export async function createSponsorWithLogo(
+  sponsor: Omit<Sponsor, 'id' | 'created_at' | 'updated_at' | 'logo_url'>,
+  logoFile?: File
+): Promise<Sponsor> {
+  // Create sponsor first
+  const { data, error } = await supabase
+    .from('sponsors')
+    .insert([sponsor])
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  // Upload logo if provided
+  if (logoFile && data.id) {
+    try {
+      const logoUrl = await uploadSponsorLogo(logoFile, data.id);
+
+      // Update sponsor with logo URL
+      const { data: updated, error: updateError } = await supabase
+        .from('sponsors')
+        .update({ logo_url: logoUrl, updated_at: new Date().toISOString() })
+        .eq('id', data.id)
+        .select()
+        .single();
+
+      if (updateError) throw updateError;
+      return updated;
+    } catch (uploadError) {
+      // Logo upload failed, but sponsor was created
+      console.error('Logo upload failed:', uploadError);
+      return data;
+    }
+  }
+
   return data;
 }
 
