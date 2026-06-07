@@ -116,25 +116,56 @@ export default function MediaManagementPage() {
         </TabsContent>
 
         <TabsContent value="events" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>上传活动图片</CardTitle>
-              <CardDescription>
-                支持 JPG, PNG, WebP, GIF 格式，最大 10MB
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ImageUpload
-                bucket="event-images"
-                onUpload={(url) => {
-                  setSelectedUrl(url);
-                  handleUploadComplete();
-                }}
-                folder="events"
-                accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
-              />
-            </CardContent>
-          </Card>
+          <Tabs defaultValue="upload" className="space-y-4">
+            <TabsList>
+              <TabsTrigger value="upload">上传新图片</TabsTrigger>
+              <TabsTrigger value="past">往期活动图片</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="upload" className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>上传活动图片</CardTitle>
+                  <CardDescription>
+                    支持 JPG, PNG, WebP, GIF 格式，最大 10MB
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ImageUpload
+                    bucket="event-images"
+                    onUpload={(url) => {
+                      setSelectedUrl(url);
+                      handleUploadComplete();
+                    }}
+                    folder="events"
+                    accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="past" className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>上传往期活动图片</CardTitle>
+                  <CardDescription>
+                    这些图片会显示在首页"Our Previous Events"轮播区域
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ImageUpload
+                    bucket="event-images"
+                    onUpload={(url) => {
+                      setSelectedUrl(url);
+                      handleUploadComplete();
+                    }}
+                    folder="past-events"
+                    accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                  />
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
 
           <Card>
             <CardHeader>
@@ -144,6 +175,21 @@ export default function MediaManagementPage() {
               <ImageGallery
                 bucket="event-images"
                 folder="events"
+                refreshTrigger={refreshKey}
+                onSelect={(url) => setSelectedUrl(url)}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>往期活动图片</CardTitle>
+              <CardDescription>显示在首页轮播区域</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ImageGallery
+                bucket="event-images"
+                folder="past-events"
                 refreshTrigger={refreshKey}
                 onSelect={(url) => setSelectedUrl(url)}
               />

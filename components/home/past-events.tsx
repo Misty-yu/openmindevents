@@ -1,80 +1,105 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import { supabase } from '@/lib/supabase';
 
 interface EventImage {
   src: string;
   alt: string;
-  fallbackSrc?: string;
 }
 
-const images: EventImage[] = [
+// Default placeholder images when no images are uploaded
+const defaultPlaceholders: EventImage[] = [
   {
-    src: '/images/event1.jpg',
-    alt: 'OpenMind Summit 2025 - Stage & Podium',
-    fallbackSrc: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&q=85&auto=format',
+    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'Conference Stage',
   },
   {
-    src: '/images/event2.jpg',
-    alt: 'OpenMind Team Leaders & Networking',
-    fallbackSrc: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e38?w=800&h=500&fit=crop&q=85&auto=format',
+    src: 'https://images.unsplash.com/photo-1505373952554-6cb74c38f3b6?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'Networking Event',
   },
   {
-    src: '/images/event3.jpg',
-    alt: 'OpenMind Speaker Presentation',
-    fallbackSrc: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e39?w=800&h=500&fit=crop&q=85&auto=format',
+    src: 'https://images.unsplash.com/photo-1475721027785-f74f4f8d0e1e?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'Speaker Presentation',
   },
   {
-    src: '/images/event4.jpg',
-    alt: 'OpenMind Keynote & Audience',
-    fallbackSrc: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e40?w=800&h=500&fit=crop&q=85&auto=format',
+    src: 'https://images.unsplash.com/photo-1591115765373-3c8ddd2e8eb0?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'Conference Audience',
   },
   {
-    src: '/images/event5.jpg',
-    alt: 'OpenMind Conference & Attendees',
-    fallbackSrc: 'https://images.unsplash.com/photo-1552664730-40d0a88a3e41?w=800&h=500&fit=crop&q=85&auto=format',
+    src: 'https://images.unsplash.com/photo-1559223602-a2e6073e5af1?w=800&h=500&fit=crop&q=85&auto=format',
+    alt: 'Workshop Session',
   },
 ];
 
 function EventImageCard({ image }: { image: EventImage }) {
-  const [imageSrc, setImageSrc] = useState(image.src);
-  const [hasError, setHasError] = useState(false);
-
-  const handleError = () => {
-    if (image.fallbackSrc && imageSrc !== image.fallbackSrc) {
-      setImageSrc(image.fallbackSrc);
-    } else {
-      setHasError(true);
-    }
-  };
-
-  if (hasError) {
-    return (
-      <div className="flex-shrink-0 w-72 sm:w-80 lg:w-96 rounded-lg overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 h-48 sm:h-52 flex items-center justify-center">
-        <div className="text-center px-4">
-          <div className="text-gray-500 text-sm font-medium">{image.alt}</div>
-          <div className="text-gray-400 text-xs mt-1">Loading image...</div>
-        </div>
-      </div>
-    );
-  }
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div className="flex-shrink-0 w-72 sm:w-80 lg:w-96 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 relative">
       <img
-        src={imageSrc}
+        src={image.src}
         alt={image.alt}
-        onError={handleError}
         className="w-full h-48 sm:h-52 object-cover brightness-110 contrast-110"
         loading="lazy"
+        onLoad={() => setLoaded(true)}
       />
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-100 animate-pulse" />
+      )}
     </div>
   );
 }
 
 export default function PastEvents() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [images, setImages] = useState<EventImage[]>(defaultPlaceholders);
+  const [loading, setLoading] = useState(true);
+
+  // Load images from Supabase storage
+  useEffect(() => {
+    loadEventImages();
+  }, []);
+
+  const loadEventImages = async () => {
+    try {
+      setLoading(true);
+
+      // List files from event-images bucket in 'past-events' folder
+      const { data, error } = await supabase.storage
+        .from('event-images')
+        .list('past-events', {
+          limit: 10,
+          sortBy: { column: 'created_at', order: 'desc' },
+        });
+
+      if (error) throw error;
+
+      if (data && data.length > 0) {
+        // Get public URLs for all images
+        const imageUrls = data
+          .filter((file) => file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i))
+          .map((file) => {
+            const { data: urlData } = supabase.storage
+              .from('event-images')
+              .getPublicUrl(`past-events/${file.name}`);
+            return {
+              src: urlData.publicUrl,
+              alt: file.name.replace(/\.[^/.]+$/, '').replace(/-/g, ' '),
+            };
+          });
+
+        if (imageUrls.length > 0) {
+          setImages(imageUrls);
+        }
+      }
+    } catch (err) {
+      console.log('Using default placeholder images:', err);
+      // Keep using defaultPlaceholders on error
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -98,7 +123,15 @@ export default function PastEvents() {
   return (
     <section className="py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Our Previous Events</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-gray-900">Our Previous Events</h2>
+          <a
+            href="/admin/media"
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          >
+            Manage Images →
+          </a>
+        </div>
       </div>
       <div
         ref={scrollRef}
@@ -109,8 +142,12 @@ export default function PastEvents() {
         ))}
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <p className="text-xs text-gray-400">
-          💡 Tip: Place your event images in <code className="bg-gray-100 px-2 py-1 rounded text-[11px]">/public/images/event1.jpg</code> through <code className="bg-gray-100 px-2 py-1 rounded text-[11px]">event5.jpg</code>
+        <p className="text-xs text-gray-500">
+          ℹ️ Upload your event images via{' '}
+          <a href="/admin/media" className="text-blue-600 hover:underline">
+            Media Library
+          </a>{' '}
+          (use the "活动图片" tab and put them in the "past-events" folder)
         </p>
       </div>
     </section>
