@@ -1,23 +1,40 @@
-import { MapPin, Users } from 'lucide-react';
+import { MapPin, Users, Calendar, Clock } from 'lucide-react';
 
 export default function SummitOverview() {
   return (
     <section className="py-14 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-          The Definitive Forum for AI-Driven Workforce Strategy
+          A Closed-Door Forum for Enterprise Reinvention
         </h2>
-        <p className="text-gray-600 text-base max-w-3xl mb-6">
-          OpenMind Workforce Transformation Summit 2026 brings together the world&apos;s most influential HR and business leaders to address the integration of AI Agents into the workplace. A strategic leadership summit for those shaping culture, talent, and people strategy in the age of intelligent automation.
+        <p className="text-gray-600 text-base max-w-3xl mb-8">
+          OpenMind AI Agent Workforce Transformation Summit 2026 convenes Founders, CEOs, CXOs,
+          and senior functional leaders to explore how AI Agents are fundamentally reshaping
+          organizational structures, leadership models, and business growth strategies. This
+          invitation-only summit delivers peer-level dialogue and actionable frameworks — not
+          vendor pitches.
         </p>
-        <div className="flex flex-wrap gap-6 text-sm text-gray-700">
-          <div className="flex items-center gap-2">
-            <MapPin size={15} className="text-[#2563eb]" />
-            Shanghai, China — 2026
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <div className="bg-white rounded-xl p-5 border border-gray-200">
+            <Calendar size={18} className="text-[#2563eb] mb-3" />
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Date</p>
+            <p className="font-semibold text-gray-900 text-sm">Friday, July 31, 2026</p>
           </div>
-          <div className="flex items-center gap-2">
-            <Users size={15} className="text-[#2563eb]" />
-            300+ CHROs & HR Leaders
+          <div className="bg-white rounded-xl p-5 border border-gray-200">
+            <Clock size={18} className="text-[#2563eb] mb-3" />
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Time</p>
+            <p className="font-semibold text-gray-900 text-sm">13:30 – 17:30</p>
+          </div>
+          <div className="bg-white rounded-xl p-5 border border-gray-200">
+            <MapPin size={18} className="text-[#2563eb] mb-3" />
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Location</p>
+            <p className="font-semibold text-gray-900 text-sm">Huangpu District, Shanghai</p>
+          </div>
+          <div className="bg-white rounded-xl p-5 border border-gray-200">
+            <Users size={18} className="text-[#2563eb] mb-3" />
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Capacity</p>
+            <p className="font-semibold text-gray-900 text-sm">60–100 Senior Leaders</p>
           </div>
         </div>
       </div>

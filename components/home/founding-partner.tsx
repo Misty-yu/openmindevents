@@ -18,7 +18,7 @@ export default function FoundingPartner() {
                 Become a Founding Partner
               </h2>
               <p className="text-blue-100 text-sm">
-                Help shape the future of workforce transformation. Connect with 300+ senior HR and business leaders.
+                Help shape the future of workforce transformation. Connect with 60–100 senior Founders, CEOs, and CXOs.
               </p>
             </div>
             <button

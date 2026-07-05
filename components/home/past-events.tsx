@@ -143,11 +143,11 @@ export default function PastEvents() {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
         <p className="text-xs text-gray-500">
-          ℹ️ Upload your event images via{' '}
+          Upload your event images via the{' '}
           <a href="/admin/media" className="text-blue-600 hover:underline">
             Media Library
           </a>{' '}
-          (use the "活动图片" tab and put them in the "past-events" folder)
+          (use the "past-events" folder)
         </p>
       </div>
     </section>

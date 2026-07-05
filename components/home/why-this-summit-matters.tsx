@@ -1,9 +1,9 @@
 export default function WhyThisSummitMatters() {
   const points = [
-    'AI Agents are transforming HR and workforce management',
-    'Organizations must prepare for AI-human collaboration',
-    'CHROs need new workforce strategies',
-    'Practical case studies and implementation insights',
+    'AI is restructuring enterprises, not just replacing roles',
+    'Leaders must redesign organizational models for AI-human collaboration',
+    'Peer insights: how top companies are transforming their structures now',
+    'Strategic clarity for Founders, CEOs, and CXOs navigating AI disruption',
   ];
 
   return (

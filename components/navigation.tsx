@@ -84,13 +84,13 @@ export default function Navigation() {
               }`}
             >
               <Settings className="w-4 h-4 inline mr-1" />
-              媒体库
+              Media Library
             </Link>
             <Link
               href="/contact"
               className="ml-4 px-5 py-2 bg-[#2563eb] text-white text-sm font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
             >
-              Join Waiting List
+              Request Invitation
             </Link>
           </nav>
 
@@ -131,14 +131,14 @@ export default function Navigation() {
               }`}
             >
               <Settings className="w-4 h-4 inline mr-1" />
-              媒体库
+              Media Library
             </Link>
             <div className="pt-2 pb-1">
               <Link
                 href="/contact"
                 className="block text-center px-5 py-2.5 bg-[#2563eb] text-white text-sm font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
               >
-                Join Waiting List
+                Request Invitation
               </Link>
             </div>
           </div>

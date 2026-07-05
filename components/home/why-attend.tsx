@@ -1,9 +1,11 @@
 export default function WhyAttend() {
   const reasons = [
-    'Learn how AI Agents are transforming HR and workforce management',
-    'Connect with CHROs and HR leaders',
-    'Discover future workforce strategies',
-    'Explore practical AI adoption case studies',
+    'Understand how AI Agents are redefining enterprise structure — not just workflows',
+    'Connect with Founders, CEOs, and C-suite peers reshaping their organizations',
+    'Gain strategic frameworks for AI-human collaboration at the organizational level',
+    'Learn from real enterprise case studies and open peer debates on future models',
+    'Explore what organizational reinvention looks like across different industries',
+    'Discover how to lead transformation before disruption forces it upon you',
   ];
 
   return (

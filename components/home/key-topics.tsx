@@ -1,11 +1,11 @@
 export default function KeyTopics() {
   const topics = [
-    'AI Agents & Workforce Strategy',
-    'Human + AI Collaboration',
-    'Talent Development in the AI Era',
-    'Future of HR Leadership',
-    'Organizational Design & Change',
-    'Governance, Ethics & Risk',
+    'CEO Briefing: The New Organizational Revolution',
+    'Enterprise AI Landscape & Intelligent Decision-Making',
+    'AI Agents × New Structure × New Growth',
+    'Organizational Restructuring, Not Just AI Tools',
+    'Enterprise Case Studies & Real-World Practices',
+    'Open Debate Forum: The Future of Organizations',
   ];
 
   return (

@@ -49,15 +49,15 @@ export default function Footer() {
             <div className="space-y-2 text-sm mb-5">
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-[#2563eb]" />
-                <span>contact@openmindevents.com</span>
+                <span>jenny.wu@openmindevents.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-[#2563eb]" />
-                <span>+86 13817550309</span>
+                <span>Jenny Wu</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-[#2563eb]" />
-                <span>Shanghai, China</span>
+                <span>Huangpu District, Shanghai, China</span>
               </div>
             </div>
             <div className="flex gap-3">

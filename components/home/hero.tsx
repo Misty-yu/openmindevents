@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, Calendar, MapPin, Users } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Users, Clock } from 'lucide-react';
 import WaitingListModal from '@/components/waiting-list-modal';
 
 export default function Hero() {
@@ -12,55 +12,62 @@ export default function Hero() {
       <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        {/* Background image with darker overlay for text legibility */}
+        {/* Background image — digital human + real person office collaboration */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
+            backgroundImage: `url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1920')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
-        <div className="absolute inset-0 bg-gray-900/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-950/85 via-gray-900/70 to-gray-900/30" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-4xl">
+          <div className="max-w-3xl">
             {/* Tag */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-blue-400/40 rounded-full mb-8 bg-blue-500/20 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
               <span className="text-blue-300 text-xs font-medium tracking-widest uppercase">
-                Summit Planning Underway for 2026
+                July 31, 2026 · Shanghai
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-4">
               OpenMind AI Agent Workforce{' '}
               <span className="text-blue-400">Transformation</span> Summit 2026
             </h1>
 
-            <p className="text-xl sm:text-2xl text-gray-200 font-light mb-4 leading-relaxed">
-              How AI Agents Are Reshaping Organizations, Talent and Leadership
+            <p className="text-lg sm:text-xl text-gray-200 font-light mb-3 leading-relaxed">
+              New Paradigm for Enterprise Organizational Structure in the Age of AI Agents
             </p>
 
-            <p className="text-gray-300 text-base mb-10 max-w-2xl leading-relaxed">
-              The premier global gathering for CHROs, HR Directors, Talent
-              Leaders, and C-Suite Executives navigating the AI-driven
-              transformation of work.
+            <p className="text-blue-300 text-base font-medium mb-6 italic">
+              "What AI truly changes is not jobs — it's the enterprise itself."
+            </p>
+
+            <p className="text-gray-300 text-sm mb-10 max-w-2xl leading-relaxed">
+              A closed-door, high-caliber gathering for senior leaders who are actively reshaping
+              how organizations are built, led, and grown in the era of intelligent automation.
             </p>
 
             {/* Meta info */}
-            <div className="flex flex-wrap gap-6 mb-10 text-sm text-gray-300">
+            <div className="flex flex-wrap gap-5 mb-10 text-sm text-gray-300">
               <div className="flex items-center gap-2">
-                <Calendar size={15} className="text-blue-400" />
-                <span>2026 — Date To Be Announced</span>
+                <Calendar size={15} className="text-blue-400 flex-shrink-0" />
+                <span>Friday, July 31, 2026</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin size={15} className="text-blue-400" />
-                <span>Shanghai, China</span>
+                <Clock size={15} className="text-blue-400 flex-shrink-0" />
+                <span>13:30 – 17:30</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users size={15} className="text-blue-400" />
-                <span>300+ CHROs & HR Leaders</span>
+                <MapPin size={15} className="text-blue-400 flex-shrink-0" />
+                <span>Huangpu District, Shanghai, China</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users size={15} className="text-blue-400 flex-shrink-0" />
+                <span>60–100 Senior Leaders · By Invitation</span>
               </div>
             </div>
 
@@ -70,7 +77,7 @@ export default function Hero() {
                 onClick={() => setModalOpen(true)}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2563eb] text-white font-semibold rounded hover:bg-blue-500 transition-all hover:gap-3 group"
               >
-                Join Waiting List
+                Request Invitation
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </button>
               <button
