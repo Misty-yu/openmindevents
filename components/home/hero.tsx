@@ -4,21 +4,15 @@ import { ArrowRight, Calendar, MapPin, Users, Clock } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Split layout: solid dark left + image right */}
-      <div className="absolute inset-0 flex">
-        {/* Dark left panel — ensures text is always on solid background */}
-        <div className="w-full lg:w-[55%] bg-gray-950 flex-shrink-0" />
-        {/* Image right panel */}
-        <div className="hidden lg:block flex-1 relative">
-          <img
-            src="https://images.pexels.com/photos/8438958/pexels-photo-8438958.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Human and AI robot collaborating in a professional setting"
-            className="absolute inset-0 w-full h-full object-cover object-left"
-          />
-          {/* Fade edge so image blends into the dark left panel */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/30 to-transparent" />
-        </div>
-      </div>
+      {/* Full-width background image */}
+      <img
+        src="https://images.pexels.com/photos/8438958/pexels-photo-8438958.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        alt="Human and AI robot collaborating in a professional setting"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
+
+      {/* Gradient overlay — dark on left for text, transparent on right to show image */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/80 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
@@ -45,13 +39,13 @@ export default function Hero() {
             &ldquo;What AI truly changes is not jobs — it&rsquo;s the enterprise itself.&rdquo;
           </p>
 
-          <p className="text-gray-400 text-sm mb-10 max-w-xl leading-relaxed">
+          <p className="text-gray-300 text-sm mb-10 max-w-xl leading-relaxed">
             A closed-door, high-caliber gathering for senior leaders actively reshaping
             how organizations are built, led, and grown in the era of intelligent automation.
           </p>
 
           {/* Meta info */}
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10 text-sm text-gray-300">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10 text-sm text-gray-200">
             <div className="flex items-center gap-2">
               <Calendar size={15} className="text-blue-400 flex-shrink-0" />
               <span>Friday, July 31, 2026</span>
@@ -81,7 +75,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border border-gray-500 text-white font-medium rounded hover:border-blue-400 hover:text-blue-300 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-gray-400 text-white font-medium rounded hover:border-blue-400 hover:text-blue-300 transition-all"
             >
               Become a Founding Partner
             </Link>
