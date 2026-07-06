@@ -28,7 +28,7 @@ export default function Hero() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-4">
             OpenMind AI Agent{' '}
             <span className="text-blue-400">Workforce Transformation</span>{' '}
-            Summit 2026
+            Forum 2026
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-200 font-light mb-3 leading-relaxed">

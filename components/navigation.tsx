@@ -7,7 +7,7 @@ import { Menu, X, Settings } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Summit 2026', href: '/summit' },
+  { label: 'Forum 2026', href: '/forum' },
   { label: 'Agenda', href: '/agenda' },
   { label: 'Speakers', href: '/speakers' },
   { label: 'Sponsors', href: '/sponsors' },

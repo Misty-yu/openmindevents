@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Linkedin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Speakers | OpenMind Workforce Transformation Summit 2026',
+  title: 'Speakers | OpenMind Workforce Transformation Forum 2026',
   description:
-    'Meet the world-class speakers at OpenMind Workforce Transformation Summit 2026.',
+    'Meet the world-class speakers at OpenMind Workforce Transformation Forum 2026.',
 };
 
 const speakerData = [
@@ -159,7 +159,7 @@ export default function SpeakersPage() {
           {/* Apply CTA */}
           <div className="mt-14 bg-gray-900 rounded-2xl p-10 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">
-              Apply to Speak at Summit 2026
+              Apply to Speak at Forum 2026
             </h2>
             <p className="text-gray-300 mb-6 max-w-xl mx-auto text-sm leading-relaxed">
               We are actively reviewing speaker applications from senior

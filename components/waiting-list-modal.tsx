@@ -59,7 +59,7 @@ export default function WaitingListModal({ isOpen, onClose }: WaitingListModalPr
                 Thank you for your interest.
               </h3>
               <p className="text-gray-600 text-sm">
-                Our team will contact you with summit updates.
+                Our team will contact you with forum updates.
               </p>
             </div>
           ) : (

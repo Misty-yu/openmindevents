@@ -11,7 +11,7 @@ const tiers = [
     color: 'border-amber-300 bg-amber-50',
     labelColor: 'text-amber-800 bg-amber-100',
     description:
-      'Maximum brand visibility across all summit touchpoints. Keynote speaking slot included.',
+      'Maximum brand visibility across all forum touchpoints. Keynote speaking slot included.',
     placeholders: ['Your Brand Here'],
   },
   {

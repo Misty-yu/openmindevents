@@ -7,9 +7,9 @@ import Footer from '@/components/footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'OpenMind Workforce Transformation Summit 2026',
+  title: 'OpenMind Workforce Transformation Forum 2026',
   description:
-    'How AI Agents Are Reshaping Organizations, Talent and Leadership. The premier summit for CHRO, HR Directors, Talent Leaders, and Enterprise Executives.',
+    'How AI Agents Are Reshaping Organizations, Talent and Leadership. The premier forum for CHRO, HR Directors, Talent Leaders, and Enterprise Executives.',
 };
 
 export default function RootLayout({

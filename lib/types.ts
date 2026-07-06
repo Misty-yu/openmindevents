@@ -1,4 +1,4 @@
-// Database types for OpenMind Summit
+// Database types for OpenMind Forum
 
 // Storage bucket types
 export type StorageBucket = 'speakers-photos' | 'sponsor-logos' | 'event-images' | 'documents';

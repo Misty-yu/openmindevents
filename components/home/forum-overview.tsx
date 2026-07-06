@@ -1,6 +1,6 @@
 import { MapPin, Users, Calendar, Clock } from 'lucide-react';
 
-export default function SummitOverview() {
+export default function ForumOverview() {
   return (
     <section className="py-14 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,10 +8,10 @@ export default function SummitOverview() {
           A Closed-Door Forum for Enterprise Reinvention
         </h2>
         <p className="text-gray-600 text-base max-w-3xl mb-8">
-          OpenMind AI Agent Workforce Transformation Summit 2026 convenes Founders, CEOs, CXOs,
+          OpenMind AI Agent Workforce Transformation Forum 2026 convenes Founders, CEOs, CXOs,
           and senior functional leaders to explore how AI Agents are fundamentally reshaping
           organizational structures, leadership models, and business growth strategies. This
-          invitation-only summit delivers peer-level dialogue and actionable frameworks — not
+          invitation-only forum delivers peer-level dialogue and actionable frameworks — not
           vendor pitches.
         </p>
 

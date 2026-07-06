@@ -1,6 +1,6 @@
 import Hero from '@/components/home/hero';
-import WhyThisSummitMatters from '@/components/home/why-this-summit-matters';
-import SummitOverview from '@/components/home/summit-overview';
+import WhyThisForumMatters from '@/components/home/why-this-forum-matters';
+import ForumOverview from '@/components/home/forum-overview';
 import WhyAttend from '@/components/home/why-attend';
 import WhoShouldAttend from '@/components/home/who-should-attend';
 import KeyTopics from '@/components/home/key-topics';
@@ -13,8 +13,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <WhyThisSummitMatters />
-      <SummitOverview />
+      <WhyThisForumMatters />
+      <ForumOverview />
       <WhyAttend />
       <WhoShouldAttend />
       <KeyTopics />

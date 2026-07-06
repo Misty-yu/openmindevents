@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
 const footerLinks = {
-  summit: [
-    { label: 'Summit Overview', href: '/summit' },
+  forum: [
+    { label: 'Forum Overview', href: '/forum' },
     { label: 'Agenda', href: '/agenda' },
     { label: 'Speakers', href: '/speakers' },
     { label: 'Sponsors & Partners', href: '/sponsors' },
@@ -42,7 +42,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5 max-w-sm text-gray-600">
-              OpenMind Events produces world-class summits and conferences for
+              OpenMind Events produces world-class forums and conferences for
               senior business leaders navigating the intersection of AI,
               talent, and organizational transformation.
             </p>
@@ -76,13 +76,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Summit Links */}
+          {/* Forum Links */}
           <div>
             <h4 className="text-gray-900 text-sm font-semibold uppercase tracking-wider mb-4">
-              The Summit
+              The Forum
             </h4>
             <ul className="space-y-2.5">
-              {footerLinks.summit.map((link) => (
+              {footerLinks.forum.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

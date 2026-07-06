@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'News | OpenMind Workforce Transformation Summit 2026',
+  title: 'News | OpenMind Workforce Transformation Forum 2026',
   description:
     'Industry analysis, research, and perspectives on AI, workforce strategy, and the future of HR leadership.',
 };

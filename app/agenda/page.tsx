@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Agenda | OpenMind Workforce Transformation Summit 2026',
+  title: 'Agenda | OpenMind Workforce Transformation Forum 2026',
   description:
-    'Explore the full agenda for OpenMind Workforce Transformation Summit 2026.',
+    'Explore the full agenda for OpenMind Workforce Transformation Forum 2026.',
 };
 
 const days = [
@@ -12,7 +12,7 @@ const days = [
     theme: 'The AI Transformation Imperative',
     sessions: [
       { time: '08:00', type: 'Registration', title: 'Welcome Registration & Networking Breakfast', speaker: '' },
-      { time: '09:00', type: 'Opening', title: 'Opening Ceremony & Welcome Address', speaker: 'Summit Chair' },
+      { time: '09:00', type: 'Opening', title: 'Opening Ceremony & Welcome Address', speaker: 'Forum Chair' },
       { time: '09:20', type: 'Keynote', title: 'The Age of AI Agents: What Every HR Leader Must Understand Now', speaker: 'Guest Keynote Speaker' },
       { time: '10:00', type: 'Keynote', title: 'From Automation to Agency: How AI is Changing the Nature of Work', speaker: 'Invited Global Leader' },
       { time: '10:40', type: 'Break', title: 'Networking Coffee Break', speaker: '' },
@@ -42,7 +42,7 @@ const days = [
       { time: '15:00', type: 'Case Study', title: 'Change Management at Scale: Driving Cultural Transformation with AI Integration', speaker: 'Fortune 100 CHO' },
       { time: '15:45', type: 'Break', title: 'Afternoon Break', speaker: '' },
       { time: '16:15', type: 'Panel', title: 'Ethics, Governance & Accountability: The HR Leader\'s Role in Responsible AI', speaker: 'Ethics & Risk Panel' },
-      { time: '17:00', type: 'Close', title: 'Summit Closing Keynote & Key Takeaways', speaker: 'Summit Chair' },
+      { time: '17:00', type: 'Close', title: 'Forum Closing Keynote & Key Takeaways', speaker: 'Forum Chair' },
       { time: '17:30', type: 'Close', title: 'Closing Reception & Farewell', speaker: '' },
     ],
   },
@@ -71,7 +71,7 @@ export default function AgendaPage() {
             Programme
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Summit Agenda
+            Forum Agenda
           </h1>
           <p className="text-gray-700 max-w-2xl text-lg font-light">
             A full two-day programme of keynotes, panels, workshops, and
@@ -86,7 +86,7 @@ export default function AgendaPage() {
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
             <strong>Note:</strong> The agenda below is indicative and will be
             updated as speakers and sessions are confirmed. All times are local
-            summit time.
+            forum time.
           </div>
 
           {days.map((day) => (

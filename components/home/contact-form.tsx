@@ -31,7 +31,7 @@ export default function ContactForm() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Start Your Journey</h2>
             <p className="text-gray-600 text-sm mb-6">
               Interested in attending, speaking, or partnering? Reach out to our team — we'll get
-              back to you with summit details and next steps.
+              back to you with forum details and next steps.
             </p>
 
             <div className="space-y-4">
@@ -70,7 +70,7 @@ export default function ContactForm() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
                 <p className="text-gray-600 text-sm">
-                  Our team will contact you with summit updates.
+                  Our team will contact you with forum updates.
                 </p>
               </div>
             ) : (

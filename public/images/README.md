@@ -2,7 +2,7 @@
 
 Add your OpenMind event images here:
 
-- `event1.jpg` - OpenMind Summit 2025 - Stage & Podium
+- `event1.jpg` - OpenMind Forum 2025 - Stage & Podium
 - `event2.jpg` - OpenMind Team Leaders & Networking
 - `event3.jpg` - OpenMind Speaker Presentation
 - `event4.jpg` - OpenMind Keynote & Audience
