@@ -4,6 +4,15 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  async redirects() {
+    return [
+      {
+        source: '/summit',
+        destination: '/forum',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

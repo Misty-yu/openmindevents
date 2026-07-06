@@ -29,4 +29,9 @@ assert.ok(existsSync(join(root, 'app/forum/page.tsx')), 'canonical /forum page m
 const redirect = readFileSync(join(root, legacyRoute), 'utf8');
 assert.match(redirect, /permanentRedirect\(['"]\/forum['"]\)/);
 
+const nextConfig = readFileSync(join(root, 'next.config.js'), 'utf8');
+assert.match(nextConfig, /source:\s*['"]\/summit['"]/);
+assert.match(nextConfig, /destination:\s*['"]\/forum['"]/);
+assert.match(nextConfig, /permanent:\s*true/);
+
 console.log('Forum rename checks passed');
