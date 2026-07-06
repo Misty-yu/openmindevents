@@ -55,9 +55,9 @@ The schema is single-tenant (no user_id/auth) since this is a public event site.
 
 ## 2. Security
 - RLS enabled on ALL tables
-- All tables allow public read/write (single-tenant, intentionally shared)
-- Policies use `USING (true)` because data is public and meant to be shared
-- All tables readable by both anon and authenticated users
+- Speakers and sponsors are publicly readable but writable only with privileged server access
+- Registrations and contact submissions allow anonymous inserts only
+- Personal data cannot be selected, updated, or deleted through the public client
 
 ## 3. Indexes
 - speakers: Index on `is_featured`, `name` for discovery
@@ -133,73 +133,43 @@ ALTER TABLE sponsors ENABLE ROW LEVEL SECURITY;
 ALTER TABLE event_registrations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
 
--- Speakers policies (public read/write)
+-- Speakers policies (public read only)
 DROP POLICY IF EXISTS "speakers_select" ON speakers;
 CREATE POLICY "speakers_select" ON speakers FOR SELECT
 TO anon, authenticated USING (true);
 
 DROP POLICY IF EXISTS "speakers_insert" ON speakers;
-CREATE POLICY "speakers_insert" ON speakers FOR INSERT
-TO anon, authenticated WITH CHECK (true);
-
 DROP POLICY IF EXISTS "speakers_update" ON speakers;
-CREATE POLICY "speakers_update" ON speakers FOR UPDATE
-TO anon, authenticated USING (true) WITH CHECK (true);
-
 DROP POLICY IF EXISTS "speakers_delete" ON speakers;
-CREATE POLICY "speakers_delete" ON speakers FOR DELETE
-TO anon, authenticated USING (true);
 
--- Sponsors policies (public read/write)
+-- Sponsors policies (public read only)
 DROP POLICY IF EXISTS "sponsors_select" ON sponsors;
 CREATE POLICY "sponsors_select" ON sponsors FOR SELECT
 TO anon, authenticated USING (true);
 
 DROP POLICY IF EXISTS "sponsors_insert" ON sponsors;
-CREATE POLICY "sponsors_insert" ON sponsors FOR INSERT
-TO anon, authenticated WITH CHECK (true);
-
 DROP POLICY IF EXISTS "sponsors_update" ON sponsors;
-CREATE POLICY "sponsors_update" ON sponsors FOR UPDATE
-TO anon, authenticated USING (true) WITH CHECK (true);
-
 DROP POLICY IF EXISTS "sponsors_delete" ON sponsors;
-CREATE POLICY "sponsors_delete" ON sponsors FOR DELETE
-TO anon, authenticated USING (true);
 
--- Event Registrations policies (public read/write)
+-- Event Registrations policies (anonymous insert only)
 DROP POLICY IF EXISTS "registrations_select" ON event_registrations;
-CREATE POLICY "registrations_select" ON event_registrations FOR SELECT
-TO anon, authenticated USING (true);
 
 DROP POLICY IF EXISTS "registrations_insert" ON event_registrations;
 CREATE POLICY "registrations_insert" ON event_registrations FOR INSERT
 TO anon, authenticated WITH CHECK (true);
 
 DROP POLICY IF EXISTS "registrations_update" ON event_registrations;
-CREATE POLICY "registrations_update" ON event_registrations FOR UPDATE
-TO anon, authenticated USING (true) WITH CHECK (true);
-
 DROP POLICY IF EXISTS "registrations_delete" ON event_registrations;
-CREATE POLICY "registrations_delete" ON event_registrations FOR DELETE
-TO anon, authenticated USING (true);
 
--- Contact Submissions policies (public read/write)
+-- Contact Submissions policies (anonymous insert only)
 DROP POLICY IF EXISTS "contacts_select" ON contact_submissions;
-CREATE POLICY "contacts_select" ON contact_submissions FOR SELECT
-TO anon, authenticated USING (true);
 
 DROP POLICY IF EXISTS "contacts_insert" ON contact_submissions;
 CREATE POLICY "contacts_insert" ON contact_submissions FOR INSERT
 TO anon, authenticated WITH CHECK (true);
 
 DROP POLICY IF EXISTS "contacts_update" ON contact_submissions;
-CREATE POLICY "contacts_update" ON contact_submissions FOR UPDATE
-TO anon, authenticated USING (true) WITH CHECK (true);
-
 DROP POLICY IF EXISTS "contacts_delete" ON contact_submissions;
-CREATE POLICY "contacts_delete" ON contact_submissions FOR DELETE
-TO anon, authenticated USING (true);
 
 -- Create indexes for common queries
 CREATE INDEX IF NOT EXISTS speakers_featured_idx ON speakers(is_featured);

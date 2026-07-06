@@ -34,7 +34,7 @@ This migration creates Supabase Storage buckets for managing conference-related 
 
 All buckets have:
 - **Public read access** — Anyone can view/download files
-- **Public upload access** — Simplified for this single-tenant app
+- **Authenticated write access** — Only signed-in users can upload, update, or delete files
 - File type validation via PostgreSQL policies
 - File size validation at bucket level
 
@@ -104,18 +104,18 @@ USING (bucket_id = 'speakers-photos');
 
 DROP POLICY IF EXISTS "speakers_photos_insert" ON storage.objects;
 CREATE POLICY "speakers_photos_insert" ON storage.objects
-FOR INSERT TO public
+FOR INSERT TO authenticated
 WITH CHECK (bucket_id = 'speakers-photos');
 
 DROP POLICY IF EXISTS "speakers_photos_update" ON storage.objects;
 CREATE POLICY "speakers_photos_update" ON storage.objects
-FOR UPDATE TO public
+FOR UPDATE TO authenticated
 USING (bucket_id = 'speakers-photos')
 WITH CHECK (bucket_id = 'speakers-photos');
 
 DROP POLICY IF EXISTS "speakers_photos_delete" ON storage.objects;
 CREATE POLICY "speakers_photos_delete" ON storage.objects
-FOR DELETE TO public
+FOR DELETE TO authenticated
 USING (bucket_id = 'speakers-photos');
 
 -- Storage policies for sponsor-logos
@@ -126,18 +126,18 @@ USING (bucket_id = 'sponsor-logos');
 
 DROP POLICY IF EXISTS "sponsor_logos_insert" ON storage.objects;
 CREATE POLICY "sponsor_logos_insert" ON storage.objects
-FOR INSERT TO public
+FOR INSERT TO authenticated
 WITH CHECK (bucket_id = 'sponsor-logos');
 
 DROP POLICY IF EXISTS "sponsor_logos_update" ON storage.objects;
 CREATE POLICY "sponsor_logos_update" ON storage.objects
-FOR UPDATE TO public
+FOR UPDATE TO authenticated
 USING (bucket_id = 'sponsor-logos')
 WITH CHECK (bucket_id = 'sponsor-logos');
 
 DROP POLICY IF EXISTS "sponsor_logos_delete" ON storage.objects;
 CREATE POLICY "sponsor_logos_delete" ON storage.objects
-FOR DELETE TO public
+FOR DELETE TO authenticated
 USING (bucket_id = 'sponsor-logos');
 
 -- Storage policies for event-images
@@ -148,18 +148,18 @@ USING (bucket_id = 'event-images');
 
 DROP POLICY IF EXISTS "event_images_insert" ON storage.objects;
 CREATE POLICY "event_images_insert" ON storage.objects
-FOR INSERT TO public
+FOR INSERT TO authenticated
 WITH CHECK (bucket_id = 'event-images');
 
 DROP POLICY IF EXISTS "event_images_update" ON storage.objects;
 CREATE POLICY "event_images_update" ON storage.objects
-FOR UPDATE TO public
+FOR UPDATE TO authenticated
 USING (bucket_id = 'event-images')
 WITH CHECK (bucket_id = 'event-images');
 
 DROP POLICY IF EXISTS "event_images_delete" ON storage.objects;
 CREATE POLICY "event_images_delete" ON storage.objects
-FOR DELETE TO public
+FOR DELETE TO authenticated
 USING (bucket_id = 'event-images');
 
 -- Storage policies for documents
@@ -170,16 +170,16 @@ USING (bucket_id = 'documents');
 
 DROP POLICY IF EXISTS "documents_insert" ON storage.objects;
 CREATE POLICY "documents_insert" ON storage.objects
-FOR INSERT TO public
+FOR INSERT TO authenticated
 WITH CHECK (bucket_id = 'documents');
 
 DROP POLICY IF EXISTS "documents_update" ON storage.objects;
 CREATE POLICY "documents_update" ON storage.objects
-FOR UPDATE TO public
+FOR UPDATE TO authenticated
 USING (bucket_id = 'documents')
 WITH CHECK (bucket_id = 'documents');
 
 DROP POLICY IF EXISTS "documents_delete" ON storage.objects;
 CREATE POLICY "documents_delete" ON storage.objects
-FOR DELETE TO public
+FOR DELETE TO authenticated
 USING (bucket_id = 'documents');
