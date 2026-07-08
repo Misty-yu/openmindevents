@@ -1,34 +1,32 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { supabase } from '@/lib/supabase';
 
 interface EventImage {
   src: string;
   alt: string;
 }
 
-// Default placeholder images when no images are uploaded
-const defaultPlaceholders: EventImage[] = [
+const localImages: EventImage[] = [
   {
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Conference Stage',
+    src: '/images/event1.jpg',
+    alt: 'OpenMind Summit 2025 - Stage & Podium',
   },
   {
-    src: 'https://images.unsplash.com/photo-1505373952554-6cb74c38f3b6?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Networking Event',
+    src: '/images/event2.jpg',
+    alt: 'OpenMind Team Leaders & Networking',
   },
   {
-    src: 'https://images.unsplash.com/photo-1475721027785-f74f4f8d0e1e?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Speaker Presentation',
+    src: '/images/event3.jpg',
+    alt: 'OpenMind Speaker Presentation',
   },
   {
-    src: 'https://images.unsplash.com/photo-1591115765373-3c8ddd2e8eb0?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Conference Audience',
+    src: '/images/event4.jpg',
+    alt: 'OpenMind Keynote & Audience',
   },
   {
-    src: 'https://images.unsplash.com/photo-1559223602-a2e6073e5af1?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Workshop Session',
+    src: '/images/event5.jpg',
+    alt: 'OpenMind Conference & Attendees',
   },
 ];
 
@@ -53,53 +51,7 @@ function EventImageCard({ image }: { image: EventImage }) {
 
 export default function PastEvents() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = useState<EventImage[]>(defaultPlaceholders);
-  const [loading, setLoading] = useState(true);
-
-  // Load images from Supabase storage
-  useEffect(() => {
-    loadEventImages();
-  }, []);
-
-  const loadEventImages = async () => {
-    try {
-      setLoading(true);
-
-      // List files from event-images bucket in 'past-events' folder
-      const { data, error } = await supabase.storage
-        .from('event-images')
-        .list('past-events', {
-          limit: 10,
-          sortBy: { column: 'created_at', order: 'desc' },
-        });
-
-      if (error) throw error;
-
-      if (data && data.length > 0) {
-        // Get public URLs for all images
-        const imageUrls = data
-          .filter((file) => file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i))
-          .map((file) => {
-            const { data: urlData } = supabase.storage
-              .from('event-images')
-              .getPublicUrl(`past-events/${file.name}`);
-            return {
-              src: urlData.publicUrl,
-              alt: file.name.replace(/\.[^/.]+$/, '').replace(/-/g, ' '),
-            };
-          });
-
-        if (imageUrls.length > 0) {
-          setImages(imageUrls);
-        }
-      }
-    } catch (err) {
-      console.log('Using default placeholder images:', err);
-      // Keep using defaultPlaceholders on error
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [images] = useState<EventImage[]>(localImages);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -147,7 +99,7 @@ export default function PastEvents() {
           <a href="/admin/media" className="text-blue-600 hover:underline">
             Media Library
           </a>{' '}
-          (use the "past-events" folder)
+          (use the 活动图片 tab and put them in the past-events folder)
         </p>
       </div>
     </section>

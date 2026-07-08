@@ -149,7 +149,7 @@ export default function MediaManagementPage() {
                 <CardHeader>
                   <CardTitle>上传往期活动图片</CardTitle>
                   <CardDescription>
-                    这些图片会显示在首页"Our Previous Events"轮播区域
+                    这些图片会显示在首页 Our Previous Events 轮播区域
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
