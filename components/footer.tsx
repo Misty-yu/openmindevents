@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
 const footerLinks = {
-  forum: [
-    { label: 'Forum Overview', href: '/forum' },
+  summit: [
+    { label: 'Forum Overview', href: '/summit' },
     { label: 'Agenda', href: '/agenda' },
     { label: 'Sponsors & Partners', href: '/sponsors' },
   ],
@@ -11,7 +11,6 @@ const footerLinks = {
     { label: 'Industry Insights', href: '/insights' },
     { label: 'About OpenMind', href: '/about' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Become a Partner', href: '/contact' },
   ],
 };
 
@@ -41,47 +40,40 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5 max-w-sm text-gray-600">
-              OpenMind Events produces world-class forums and conferences for
-              senior business leaders navigating the intersection of AI,
-              talent, and organizational transformation.
+              OpenMind Events convenes focused forums for business leaders
+              navigating AI, talent, and organizational transformation.
             </p>
             <div className="space-y-2 text-sm mb-5">
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-[#2563eb]" />
-                <span>jenny.wu@openmindevents.com</span>
+                <span>contact@openmindevents.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-[#2563eb]" />
-                <span>Jenny Wu</span>
+                <span>+86 13817550309</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-[#2563eb]" />
-                <span>Huangpu District, Shanghai, China</span>
+                <span>Shanghai, China</span>
               </div>
             </div>
             <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-600 hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-              >
+              <span className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-400" aria-label="LinkedIn">
                 <Linkedin size={14} />
-              </a>
-              <a
-                href="#"
-                className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-600 hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-              >
+              </span>
+              <span className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-400" aria-label="Twitter">
                 <Twitter size={14} />
-              </a>
+              </span>
             </div>
           </div>
 
-          {/* Forum Links */}
+          {/* Summit Links */}
           <div>
             <h4 className="text-gray-900 text-sm font-semibold uppercase tracking-wider mb-4">
               The Forum
             </h4>
             <ul className="space-y-2.5">
-              {footerLinks.forum.map((link) => (
+              {footerLinks.summit.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -117,12 +109,8 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
           <p>&copy; 2026 OpenMind Events by JR Group. All Rights Reserved.</p>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-gray-900 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-gray-900 transition-colors">
-              Terms of Use
-            </a>
+            <span>Privacy Policy</span>
+            <span>Terms of Use</span>
           </div>
         </div>
       </div>

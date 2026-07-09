@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { uploadFile, deleteFile } from '@/lib/storage';
 import type { StorageBucket } from '@/lib/types';
 
 interface ImageUploadProps {
@@ -13,6 +12,8 @@ interface ImageUploadProps {
   folder?: string;
   accept?: string;
   className?: string;
+  adminToken?: string;
+  imageOnly?: boolean;
 }
 
 export function ImageUpload({
@@ -22,6 +23,8 @@ export function ImageUpload({
   folder,
   accept = 'image/jpeg,image/jpg,image/png,image/webp',
   className = '',
+  adminToken = '',
+  imageOnly = true,
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(currentUrl || null);
@@ -35,25 +38,34 @@ export function ImageUpload({
     setError(null);
 
     // 验证文件类型
-    if (!file.type.startsWith('image/')) {
+    if (imageOnly && !file.type.startsWith('image/')) {
       setError('请选择图片文件');
       return;
     }
 
     // 显示预览
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setPreview(event.target?.result as string);
-    };
-    reader.readAsDataURL(file);
+    if (imageOnly) {
+      const reader = new FileReader();
+      reader.onload = (event) => setPreview(event.target?.result as string);
+      reader.readAsDataURL(file);
+    }
 
     // 上传文件
     setUploading(true);
     try {
-      const path = folder ? `${folder}/${Date.now()}-${file.name}` : undefined;
-      const result = await uploadFile(file, bucket, path);
+      const body = new FormData();
+      body.append('file', file);
+      body.append('bucket', bucket);
+      if (folder) body.append('folder', folder);
+      const response = await fetch('/api/media', {
+        method: 'POST',
+        headers: { 'x-admin-token': adminToken },
+        body,
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || '上传失败');
       onUpload(result.publicUrl);
-      setPreview(result.publicUrl);
+      setPreview(imageOnly ? result.publicUrl : file.name);
     } catch (err) {
       setError(err instanceof Error ? err.message : '上传失败');
       setPreview(currentUrl || null);
@@ -87,11 +99,11 @@ export function ImageUpload({
 
       {preview ? (
         <div className="relative group">
-          <img
-            src={preview}
-            alt="Preview"
-            className="w-full h-48 object-cover rounded-lg border border-gray-200"
-          />
+          {imageOnly ? (
+            <img src={preview} alt="Preview" className="w-full h-48 object-cover rounded-lg border border-gray-200" />
+          ) : (
+            <div className="w-full h-48 rounded-lg border border-gray-200 flex items-center justify-center text-sm text-gray-700">{preview}</div>
+          )}
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
             <Button
               type="button"
@@ -129,8 +141,8 @@ export function ImageUpload({
           ) : (
             <>
               <ImageIcon className="w-12 h-12 text-gray-400 mb-2" />
-              <p className="text-sm text-gray-500">点击上传图片</p>
-              <p className="text-xs text-gray-400 mt-1">JPG, PNG, WebP 格式</p>
+              <p className="text-sm text-gray-500">点击上传{imageOnly ? '图片' : '文件'}</p>
+              <p className="text-xs text-gray-400 mt-1">请选择允许的文件格式</p>
             </>
           )}
         </div>

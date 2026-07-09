@@ -60,7 +60,7 @@ export default function SponsorsPreview() {
               Sponsors & Partners
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto text-sm">
-              Reach 500+ senior HR and business executives. Sponsorship packages
+              Engage directly with 50 senior business and HR leaders. Partnership packages
               for every objective — brand awareness, lead generation, thought
               leadership, and more.
             </p>
