@@ -5,7 +5,7 @@ import { Globe, Award, Users, Lightbulb } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About | OpenMind Events',
   description:
-    'Learn about OpenMind Events — the organization behind world-class summits and conferences for senior HR and business leaders.',
+    'Learn about OpenMind Events, the organization behind focused forums for senior HR and business leaders.',
 };
 
 const values = [
@@ -25,7 +25,7 @@ const values = [
     icon: Globe,
     title: 'Genuinely International',
     description:
-      'Our summits draw speakers and delegates from across Asia-Pacific, North America, Europe, and the Middle East. Global challenges require global dialogue.',
+      'Our forums bring together relevant practitioners and decision-makers for focused, practical dialogue.',
   },
   {
     icon: Award,
@@ -72,7 +72,7 @@ export default function AboutPage() {
               About OpenMind Events
             </h1>
             <p className="text-gray-700 text-lg font-light leading-relaxed mb-4">
-              OpenMind Events produces premium summits, conferences, and
+              OpenMind Events produces focused forums, conferences, and
               forums for senior business leaders navigating the most significant
               shifts in organizational history.
             </p>

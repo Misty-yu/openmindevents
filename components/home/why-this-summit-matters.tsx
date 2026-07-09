@@ -11,7 +11,7 @@ export default function WhyThisSummitMatters() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 flex-shrink-0">
-            Why This Summit Matters
+            Why This Forum Matters
           </h2>
           <ul className="grid sm:grid-cols-2 gap-x-10 gap-y-3">
             {points.map((point) => (

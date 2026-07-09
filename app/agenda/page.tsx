@@ -1,54 +1,36 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Agenda | OpenMind Workforce Transformation Summit 2026',
+  title: '议程 | OpenMind AI Workforce Transformation Forum 2026',
   description:
-    'Explore the full agenda for OpenMind Workforce Transformation Summit 2026.',
+    'AI驱动的劳动力转型与变革会议议程。',
 };
 
 const days = [
   {
-    label: 'Day One',
-    theme: 'The AI Transformation Imperative',
+    label: '议程',
+    theme: 'AI驱动的劳动力转型与变革 · 13:30–17:30',
     sessions: [
-      { time: '08:00', type: 'Registration', title: 'Welcome Registration & Networking Breakfast', speaker: '' },
-      { time: '09:00', type: 'Opening', title: 'Opening Ceremony & Welcome Address', speaker: 'Summit Chair' },
-      { time: '09:20', type: 'Keynote', title: 'The Age of AI Agents: What Every HR Leader Must Understand Now', speaker: 'Guest Keynote Speaker' },
-      { time: '10:00', type: 'Keynote', title: 'From Automation to Agency: How AI is Changing the Nature of Work', speaker: 'Invited Global Leader' },
-      { time: '10:40', type: 'Break', title: 'Networking Coffee Break', speaker: '' },
-      { time: '11:10', type: 'Panel', title: 'Boardroom Perspectives: What CEOs & CHROs Expect from Each Other in the AI Era', speaker: 'Panel of 4 Senior Leaders' },
-      { time: '12:10', type: 'Session', title: 'Workforce Strategy in an Agent-First World: A Practical Framework', speaker: 'Strategy Partner' },
-      { time: '13:00', type: 'Break', title: 'Networking Lunch & Exhibition', speaker: '' },
-      { time: '14:30', type: 'Workshop', title: 'Workshop A: Building Your AI Workforce Readiness Roadmap', speaker: 'Workshop Facilitator' },
-      { time: '14:30', type: 'Workshop', title: 'Workshop B: Designing Human + AI Teams: What Works', speaker: 'Workshop Facilitator' },
-      { time: '15:30', type: 'Case Study', title: 'How We Deployed AI Agents Across 50,000 Employees: Lessons from the Field', speaker: 'Global CHRO' },
-      { time: '16:10', type: 'Break', title: 'Networking Break & Exhibition', speaker: '' },
-      { time: '16:40', type: 'Panel', title: 'The CHRO of 2027: Redefining the People Function for an AI-Augmented Enterprise', speaker: 'Panel of CHROs' },
-      { time: '17:40', type: 'Close', title: 'Day One Close & Evening Reception', speaker: '' },
-    ],
-  },
-  {
-    label: 'Day Two',
-    theme: 'Talent, Leadership & Culture',
-    sessions: [
-      { time: '08:30', type: 'Registration', title: 'Morning Networking Breakfast', speaker: '' },
-      { time: '09:00', type: 'Keynote', title: 'Talent in the Age of AI: Rethinking Skills, Roles, and Career Architecture', speaker: 'Guest Keynote Speaker' },
-      { time: '09:40', type: 'Session', title: 'The New Employee Value Proposition: Attracting and Retaining Talent Alongside AI', speaker: 'Talent Strategy Leader' },
-      { time: '10:20', type: 'Break', title: 'Networking Break', speaker: '' },
-      { time: '10:45', type: 'Roundtable', title: 'Roundtables: Deep-Dive Peer Exchange on AI + People Challenges', speaker: 'Facilitated Groups' },
-      { time: '12:00', type: 'Panel', title: 'L&D Reimagined: From Training to Capability Ecosystems in an AI World', speaker: 'L&D Executives Panel' },
-      { time: '13:00', type: 'Break', title: 'Networking Lunch & Exhibition', speaker: '' },
-      { time: '14:15', type: 'Keynote', title: 'Organizational Design for Adaptive Enterprises: Structure Follows Strategy', speaker: 'OD Research Leader' },
-      { time: '15:00', type: 'Case Study', title: 'Change Management at Scale: Driving Cultural Transformation with AI Integration', speaker: 'Fortune 100 CHO' },
-      { time: '15:45', type: 'Break', title: 'Afternoon Break', speaker: '' },
-      { time: '16:15', type: 'Panel', title: 'Ethics, Governance & Accountability: The HR Leader\'s Role in Responsible AI', speaker: 'Ethics & Risk Panel' },
-      { time: '17:00', type: 'Close', title: 'Summit Closing Keynote & Key Takeaways', speaker: 'Summit Chair' },
-      { time: '17:30', type: 'Close', title: 'Closing Reception & Farewell', speaker: '' },
+      { time: '13:30', type: '开幕', title: '开幕致辞与背景引入', speaker: '主题：站在劳动力变革的十字路口 · 13:30 - 13:40（10 分钟）' },
+      { time: '13:40', type: '主旨演讲', title: '主旨演讲一：技术前沿与岗位重塑', speaker: '题材结合：结合时下爆火的 AI Agent（智能体）在企业级工作流中的普及，以及白领工作（如法律、金融、文案、基础编程）被深度自动化的现状。方向：剖析从“AI 辅助人类”到“AI 独立完成端到端任务”的临界点。· 13:40 - 14:10（30 分钟）' },
+      { time: '14:10', type: '主旨演讲', title: '主旨演讲二：具身智能与蓝领劳动力', speaker: '题材结合：结合人形机器人在制造、物流、零售行业的最新商业化落地进展。方向：讨论 AI 如何走出虚拟世界，开始实质性替代高重复性、高风险的体力劳动。· 14:10 - 14:40（30 分钟）' },
+      { time: '14:40', type: '产业圆桌', title: '产业圆桌论坛：企业转型的“降本增效”与“人才阵痛”', speaker: '议题方向：企业引入AI后，如何平衡短期内的裁员成本与长期的生产力提升？留存的员工需要具备哪些新技能（如Prompt工程、AI合规审查）？拟邀嘉宾类型：头部科技企业HRVP、传统制造或金融业CIO、AI初创企业CEO、管理咨询专家。· 14:40 - 15:30（50 分钟）' },
+      { time: '15:30', type: '茶歇', title: '茶歇与自由交流（Networking Break）', speaker: '亮点设置：现场设立“AI应用体验区”，让嘉宾茶歇时亲身体验最新的AI工作流工具。· 15:30 - 15:55（25 分钟）' },
+      { time: '15:55', type: '跨界思辨', title: '跨界思辨圆桌：替代还是共生？重新定义人类劳动力价值', speaker: '议题方向：当硬技能（写代码、做报表）被AI打包，人类的核心竞争力是否全面转向“软实力”（情绪价值、创造力、道德决策）？如何预防技术失业带来的社会问题？拟邀嘉宾类型：社会学家/经济学家、AI伦理学者、科幻作家或前沿科技媒体人。· 15:55 - 16:45（50 分钟）' },
+      { time: '16:45', type: '互动工坊', title: '互动环节：全场思辨——“2030劳动力预测”', speaker: '形式：现场观众通过大屏幕实时投票和匿名留言，探讨“哪个岗位最不可能被替代”，并由台下专家进行随机点评。· 16:45 - 17:15（30 分钟）' },
+      { time: '17:15', type: '闭幕', title: '闭幕演讲与总结', speaker: '主题：拥抱变革，重塑技能——给未来劳动者的破局指南。· 17:15 - 17:30（15 分钟）' },
     ],
   },
 ];
 
 const typeColors: Record<string, string> = {
+  '主旨演讲': 'bg-blue-50 text-blue-700 border-blue-200',
+  '产业圆桌': 'bg-purple-50 text-purple-700 border-purple-200',
+  '跨界思辨': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  '互动工坊': 'bg-green-50 text-green-700 border-green-200',
+  '开幕': 'bg-gray-50 text-gray-700 border-gray-200',
+  '茶歇': 'bg-gray-50 text-gray-600 border-gray-200',
+  '闭幕': 'bg-gray-50 text-gray-600 border-gray-200',
   Keynote: 'bg-blue-50 text-blue-700 border-blue-200',
   Panel: 'bg-purple-50 text-purple-700 border-purple-200',
   Workshop: 'bg-green-50 text-green-700 border-green-200',
@@ -71,11 +53,10 @@ export default function AgendaPage() {
             Programme
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Summit Agenda
+            AI驱动的劳动力转型与变革
           </h1>
           <p className="text-gray-700 max-w-2xl text-lg font-light">
-            A full two-day programme of keynotes, panels, workshops, and
-            roundtables. Agenda subject to change as speakers are confirmed.
+            13:30–17:30 · 主旨演讲 + 产业圆桌 + 跨界思辨 + 互动工坊
           </p>
         </div>
       </section>
@@ -84,9 +65,7 @@ export default function AgendaPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
-            <strong>Note:</strong> The agenda below is indicative and will be
-            updated as speakers and sessions are confirmed. All times are local
-            summit time.
+            <strong>议程说明：</strong> 本场议程围绕趋势与破局、痛点与实践、未来与共生三个板块展开。
           </div>
 
           {days.map((day) => (
@@ -104,7 +83,7 @@ export default function AgendaPage() {
                   <div
                     key={i}
                     className={`flex gap-4 p-4 rounded-lg border bg-white ${
-                      ['Break', 'Registration', 'Close'].includes(session.type)
+                      ['茶歇', '开幕', '闭幕'].includes(session.type)
                         ? 'opacity-60'
                         : 'hover:shadow-sm transition-shadow'
                     }`}

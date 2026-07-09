@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ArrowRight, Calendar, MapPin, Users } from 'lucide-react';
 import WaitingListModal from '@/components/waiting-list-modal';
 
@@ -16,7 +17,7 @@ export default function Hero() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
+            backgroundImage: `url('/images/openmind-home-hero-ai-collaboration-1600x900.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -29,13 +30,13 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-blue-400/40 rounded-full mb-8 bg-blue-500/20 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
               <span className="text-blue-300 text-xs font-medium tracking-widest uppercase">
-                Summit Planning Underway for 2026
+                Forum Planning Underway for 2026
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-              OpenMind AI Agent Workforce{' '}
-              <span className="text-blue-400">Transformation</span> Summit 2026
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+              OpenMind AI Workforce{' '}
+              <span className="text-blue-400">Transformation</span> Forum 2026
             </h1>
 
             <p className="text-xl sm:text-2xl text-gray-200 font-light mb-4 leading-relaxed">
@@ -43,9 +44,8 @@ export default function Hero() {
             </p>
 
             <p className="text-gray-300 text-base mb-10 max-w-2xl leading-relaxed">
-              The premier global gathering for CHROs, HR Directors, Talent
-              Leaders, and C-Suite Executives navigating the AI-driven
-              transformation of work.
+              A focused half-day forum for business and HR leaders navigating
+              the AI-driven transformation of work.
             </p>
 
             {/* Meta info */}
@@ -60,7 +60,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <Users size={15} className="text-blue-400" />
-                <span>300+ CHROs & HR Leaders</span>
+                <span>50 Senior Business &amp; HR Leaders</span>
               </div>
             </div>
 
@@ -73,12 +73,12 @@ export default function Hero() {
                 Join Waiting List
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </button>
-              <button
-                onClick={() => setModalOpen(true)}
+              <Link
+                href="/contact?interest=founding-partner"
                 className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-gray-400 text-white font-medium rounded hover:border-blue-400 hover:text-blue-300 transition-all"
               >
-                Become a Founding Partner
-              </button>
+                Become an Event Partner
+              </Link>
             </div>
           </div>
         </div>

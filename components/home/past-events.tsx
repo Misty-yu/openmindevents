@@ -1,35 +1,19 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { supabase } from '@/lib/supabase';
 
 interface EventImage {
   src: string;
   alt: string;
 }
 
-// Default placeholder images when no images are uploaded
-const defaultPlaceholders: EventImage[] = [
-  {
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Conference Stage',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1505373952554-6cb74c38f3b6?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Networking Event',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1475721027785-f74f4f8d0e1e?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Speaker Presentation',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1591115765373-3c8ddd2e8eb0?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Conference Audience',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1559223602-a2e6073e5af1?w=800&h=500&fit=crop&q=85&auto=format',
-    alt: 'Workshop Session',
-  },
+const eventImages: EventImage[] = [
+  { src: '/images/past-events/openmind-past-event-01.png', alt: 'OpenMind previous event' },
+  { src: '/images/past-events/openmind-past-event-02.png', alt: 'OpenMind panel discussion' },
+  { src: '/images/past-events/openmind-past-event-03.png', alt: 'OpenMind conference session' },
+  { src: '/images/past-events/openmind-past-event-04.png', alt: 'OpenMind industry forum' },
+  { src: '/images/past-events/openmind-past-event-05.png', alt: 'OpenMind guest presentation' },
+  { src: '/images/past-events/openmind-past-event-06.png', alt: 'OpenMind audience discussion' },
 ];
 
 function EventImageCard({ image }: { image: EventImage }) {
@@ -53,53 +37,28 @@ function EventImageCard({ image }: { image: EventImage }) {
 
 export default function PastEvents() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = useState<EventImage[]>(defaultPlaceholders);
-  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState<EventImage[]>(eventImages);
 
-  // Load images from Supabase storage
   useEffect(() => {
-    loadEventImages();
-  }, []);
-
-  const loadEventImages = async () => {
-    try {
-      setLoading(true);
-
-      // List files from event-images bucket in 'past-events' folder
-      const { data, error } = await supabase.storage
-        .from('event-images')
-        .list('past-events', {
-          limit: 10,
-          sortBy: { column: 'created_at', order: 'desc' },
-        });
-
-      if (error) throw error;
-
-      if (data && data.length > 0) {
-        // Get public URLs for all images
-        const imageUrls = data
-          .filter((file) => file.name.match(/\.(jpg|jpeg|png|webp|gif)$/i))
-          .map((file) => {
-            const { data: urlData } = supabase.storage
-              .from('event-images')
-              .getPublicUrl(`past-events/${file.name}`);
-            return {
-              src: urlData.publicUrl,
-              alt: file.name.replace(/\.[^/.]+$/, '').replace(/-/g, ' '),
-            };
-          });
-
-        if (imageUrls.length > 0) {
-          setImages(imageUrls);
+    let active = true;
+    fetch('/api/media?bucket=event-images&folder=past-events')
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Unable to load event images');
+        return response.json();
+      })
+      .then((result) => {
+        if (active && Array.isArray(result.files) && result.files.length > 0) {
+          setImages(result.files.map((file: { publicUrl: string; name: string }) => ({
+            src: file.publicUrl,
+            alt: file.name.replace(/[-_]/g, ' '),
+          })));
         }
-      }
-    } catch (err) {
-      console.log('Using default placeholder images:', err);
-      // Keep using defaultPlaceholders on error
-    } finally {
-      setLoading(false);
-    }
-  };
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -125,12 +84,6 @@ export default function PastEvents() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-900">Our Previous Events</h2>
-          <a
-            href="/admin/media"
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-          >
-            Manage Images →
-          </a>
         </div>
       </div>
       <div
@@ -140,15 +93,6 @@ export default function PastEvents() {
         {images.map((img, i) => (
           <EventImageCard key={i} image={img} />
         ))}
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <p className="text-xs text-gray-500">
-          ℹ️ Upload your event images via{' '}
-          <a href="/admin/media" className="text-blue-600 hover:underline">
-            Media Library
-          </a>{' '}
-          (use the "活动图片" tab and put them in the "past-events" folder)
-        </p>
       </div>
     </section>
   );

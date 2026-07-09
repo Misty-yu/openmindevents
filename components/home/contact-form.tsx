@@ -5,6 +5,8 @@ import { Send } from 'lucide-react';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -17,9 +19,24 @@ export default function ContactForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, message: 'Homepage contact request' }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Unable to submit your request.');
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to submit your request.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -36,7 +53,7 @@ export default function ContactForm() {
               <Send size={22} className="text-[#2563eb]" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-            <p className="text-gray-600 text-sm">Our team will contact you with summit updates.</p>
+            <p className="text-gray-600 text-sm">Our team will contact you with forum updates.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
@@ -84,10 +101,12 @@ export default function ContactForm() {
             />
             <button
               type="submit"
+              disabled={submitting}
               className="sm:col-span-2 py-3 bg-[#2563eb] text-white font-semibold rounded-lg hover:bg-[#1d4ed8] transition-colors flex items-center justify-center gap-2"
             >
-              Submit <Send size={15} />
+              {submitting ? 'Submitting...' : 'Submit'} <Send size={15} />
             </button>
+            {error && <p className="sm:col-span-2 text-sm text-red-600" role="alert">{error}</p>}
           </form>
         )}
       </div>

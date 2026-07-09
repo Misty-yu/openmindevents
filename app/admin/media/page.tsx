@@ -9,10 +9,40 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 export default function MediaManagementPage() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [selectedUrl, setSelectedUrl] = useState<string>('');
+  const [adminToken, setAdminToken] = useState('');
+  const [tokenInput, setTokenInput] = useState('');
 
   const handleUploadComplete = () => {
     setRefreshKey((k) => k + 1);
   };
+
+  if (!adminToken) {
+    return (
+      <div className="max-w-md mx-auto px-4 py-32">
+        <h1 className="text-2xl font-bold mb-2">媒体库登录</h1>
+        <p className="text-sm text-gray-600 mb-6">请输入管理员令牌以管理网站文件。</p>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (tokenInput.trim()) setAdminToken(tokenInput.trim());
+          }}
+          className="space-y-3"
+        >
+          <input
+            type="password"
+            value={tokenInput}
+            onChange={(event) => setTokenInput(event.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-3 py-2.5"
+            autoComplete="current-password"
+            required
+          />
+          <button type="submit" className="w-full rounded-lg bg-[#2563eb] text-white py-2.5 font-semibold">
+            进入媒体库
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -53,6 +83,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageUpload
                 bucket="speakers-photos"
+                adminToken={adminToken}
                 onUpload={(url) => {
                   setSelectedUrl(url);
                   handleUploadComplete();
@@ -71,6 +102,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageGallery
                 bucket="speakers-photos"
+                adminToken={adminToken}
                 folder="speakers"
                 refreshTrigger={refreshKey}
                 onSelect={(url) => setSelectedUrl(url)}
@@ -90,6 +122,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageUpload
                 bucket="sponsor-logos"
+                adminToken={adminToken}
                 onUpload={(url) => {
                   setSelectedUrl(url);
                   handleUploadComplete();
@@ -107,6 +140,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageGallery
                 bucket="sponsor-logos"
+                adminToken={adminToken}
                 folder="sponsors"
                 refreshTrigger={refreshKey}
                 onSelect={(url) => setSelectedUrl(url)}
@@ -133,6 +167,7 @@ export default function MediaManagementPage() {
                 <CardContent>
                   <ImageUpload
                     bucket="event-images"
+                    adminToken={adminToken}
                     onUpload={(url) => {
                       setSelectedUrl(url);
                       handleUploadComplete();
@@ -149,12 +184,13 @@ export default function MediaManagementPage() {
                 <CardHeader>
                   <CardTitle>上传往期活动图片</CardTitle>
                   <CardDescription>
-                    这些图片会显示在首页"Our Previous Events"轮播区域
+                    这些图片会显示在首页 &quot;Our Previous Events&quot; 轮播区域
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ImageUpload
                     bucket="event-images"
+                    adminToken={adminToken}
                     onUpload={(url) => {
                       setSelectedUrl(url);
                       handleUploadComplete();
@@ -174,6 +210,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageGallery
                 bucket="event-images"
+                adminToken={adminToken}
                 folder="events"
                 refreshTrigger={refreshKey}
                 onSelect={(url) => setSelectedUrl(url)}
@@ -189,6 +226,7 @@ export default function MediaManagementPage() {
             <CardContent>
               <ImageGallery
                 bucket="event-images"
+                adminToken={adminToken}
                 folder="past-events"
                 refreshTrigger={refreshKey}
                 onSelect={(url) => setSelectedUrl(url)}
@@ -206,12 +244,14 @@ export default function MediaManagementPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col items-center justify-center h-48 border-2 border-dashed border-gray-300 rounded-lg">
-                <p className="text-gray-500 mb-2">文档上传功能</p>
-                <p className="text-sm text-gray-400">
-                  可以在这里上传议程、演讲PPT、白皮书等文档
-                </p>
-              </div>
+              <ImageUpload
+                bucket="documents"
+                adminToken={adminToken}
+                imageOnly={false}
+                folder="resources"
+                accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                onUpload={(url) => setSelectedUrl(url)}
+              />
             </CardContent>
           </Card>
         </TabsContent>

@@ -11,9 +11,9 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Summit 2026 | OpenMind Workforce Transformation Summit',
+  title: 'Forum 2026 | OpenMind AI Workforce Transformation Forum',
   description:
-    'Learn about the OpenMind Workforce Transformation Summit 2026 — the premier global forum for HR and business leaders on AI-driven organizational change.',
+    'Learn about the OpenMind AI Workforce Transformation Forum 2026, a focused half-day exchange for 50 business and HR leaders in Shanghai.',
 };
 
 const pillars = [
@@ -80,10 +80,10 @@ export default function SummitPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
-              Summit 2026
+              Forum 2026
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-5">
-              OpenMind Workforce Transformation Summit 2026
+              OpenMind AI Workforce Transformation Forum 2026
             </h1>
             <p className="text-gray-700 text-xl font-light leading-relaxed mb-8">
               How AI Agents Are Reshaping Organizations, Talent and Leadership
@@ -114,14 +114,14 @@ export default function SummitPage() {
               Our Mission
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5">
-              Why This Summit Matters Now
+              Why This Forum Matters Now
             </h2>
             <p className="text-gray-700 leading-relaxed">
               AI Agents are no longer a future concept — they are arriving inside
               organizations today. The speed and scale of this transformation
               demands that HR and business leaders develop a new strategic
               vocabulary, new organizational models, and new leadership
-              capabilities. OpenMind Workforce Transformation Summit 2026 is
+              capabilities. OpenMind AI Workforce Transformation Forum 2026 is
               the venue where that work happens.
             </p>
           </div>
@@ -151,7 +151,7 @@ export default function SummitPage() {
               Format
             </span>
             <h2 className="text-3xl font-bold text-gray-900">
-              How the Summit is Structured
+              How the Forum is Structured
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -16,6 +16,8 @@ const interestedAs = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -32,9 +34,24 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to send your message.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -124,18 +141,12 @@ export default function ContactPage() {
                   Follow OpenMind Events
                 </p>
                 <div className="flex gap-3">
-                  <a
-                    href="#"
-                    className="w-9 h-9 border border-gray-300 rounded-lg flex items-center justify-center text-gray-600 hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-                  >
+                  <span className="w-9 h-9 border border-gray-300 rounded-lg flex items-center justify-center text-gray-400" aria-label="LinkedIn">
                     <Linkedin size={15} />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-9 h-9 border border-gray-300 rounded-lg flex items-center justify-center text-gray-600 hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-                  >
+                  </span>
+                  <span className="w-9 h-9 border border-gray-300 rounded-lg flex items-center justify-center text-gray-400" aria-label="Twitter">
                     <Twitter size={15} />
-                  </a>
+                  </span>
                 </div>
               </div>
 
@@ -282,11 +293,14 @@ export default function ContactPage() {
 
                       <button
                         type="submit"
+                        disabled={submitting}
                         className="w-full py-3.5 bg-[#2563eb] text-white font-semibold rounded-lg hover:bg-[#1d4ed8] transition-colors flex items-center justify-center gap-2"
                       >
-                        Send Message
+                        {submitting ? 'Sending...' : 'Send Message'}
                         <Send size={15} />
                       </button>
+
+                      {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
 
                       <p className="text-xs text-gray-600 text-center">
                         By submitting, you agree to our Privacy Policy. Your
