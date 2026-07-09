@@ -9,10 +9,10 @@ export default function ForumOverview() {
         </h2>
         <p className="text-gray-600 text-base max-w-3xl mb-8">
           OpenMind AI Agent Workforce Transformation Forum 2026 convenes Founders, CEOs, CXOs,
-          and senior functional leaders to explore how AI Agents are fundamentally reshaping
-          organizational structures, leadership models, and business growth strategies. This
-          invitation-only forum delivers peer-level dialogue and actionable frameworks — not
-          vendor pitches.
+          HR leaders, AI leaders, digital transformation leaders, and innovation and business
+          leaders to explore how AI Agents are fundamentally reshaping organizational structures,
+          leadership models, and business growth strategies. This invitation-only forum delivers
+          peer-level dialogue and actionable frameworks — not vendor pitches.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -34,7 +34,10 @@ export default function ForumOverview() {
           <div className="bg-white rounded-xl p-5 border border-gray-200">
             <Users size={18} className="text-[#2563eb] mb-3" />
             <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Capacity</p>
-            <p className="font-semibold text-gray-900 text-sm">60–100 Senior Leaders</p>
+            <p className="font-semibold text-gray-900 text-sm">
+              50 Founders, CEOs, CXOs, HR leaders, AI leaders, digital transformation leaders,
+              innovation and business leaders
+            </p>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   Brain,
   Users,
@@ -9,12 +11,7 @@ import {
   Award,
   ArrowRight,
 } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Forum 2026 | OpenMind Workforce Transformation Forum',
-  description:
-    'Learn about the OpenMind Workforce Transformation Forum 2026 — the premier global forum for HR and business leaders on AI-driven organizational change.',
-};
+import WaitingListModal from '@/components/waiting-list-modal';
 
 const pillars = [
   {
@@ -65,8 +62,12 @@ const formats = [
 ];
 
 export default function ForumPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
+      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
       {/* Hero */}
       <section className="pt-32 pb-20 bg-white relative overflow-hidden">
         <div
@@ -89,12 +90,12 @@ export default function ForumPage() {
               How AI Agents Are Reshaping Organizations, Talent and Leadership
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setModalOpen(true)}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
               >
                 Register Interest <ArrowRight size={15} />
-              </Link>
+              </button>
               <Link
                 href="/agenda"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-900 font-medium rounded hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
@@ -184,18 +185,12 @@ export default function ForumPage() {
             dialogue. Early expressions of interest are encouraged.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
+            <button
+              onClick={() => setModalOpen(true)}
               className="px-7 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
             >
               Register Interest
-            </Link>
-            <Link
-              href="/sponsors"
-              className="px-7 py-3 border-2 border-gray-500 text-white font-medium rounded hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-            >
-              Sponsorship Opportunities
-            </Link>
+            </button>
           </div>
         </div>
       </section>

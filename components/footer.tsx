@@ -5,12 +5,9 @@ const footerLinks = {
   summit: [
     { label: 'Forum Overview', href: '/summit' },
     { label: 'Agenda', href: '/agenda' },
-    { label: 'Sponsors & Partners', href: '/sponsors' },
   ],
   resources: [
-    { label: 'Industry Insights', href: '/insights' },
     { label: 'About OpenMind', href: '/about' },
-    { label: 'Contact Us', href: '/contact' },
   ],
 };
 

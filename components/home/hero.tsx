@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { ArrowRight, Calendar, MapPin, Users } from 'lucide-react';
 import WaitingListModal from '@/components/waiting-list-modal';
 
@@ -52,7 +51,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-6 mb-10 text-sm text-gray-300">
               <div className="flex items-center gap-2">
                 <Calendar size={15} className="text-blue-400" />
-                <span>2026 — Date To Be Announced</span>
+                <span>Friday, July 31, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={15} className="text-blue-400" />
@@ -60,7 +59,10 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <Users size={15} className="text-blue-400" />
-                <span>50 Senior Business &amp; HR Leaders</span>
+                <span>
+                  50 Founders, CEOs, CXOs, HR leaders, AI leaders, digital transformation
+                  leaders, innovation and business leaders
+                </span>
               </div>
             </div>
 
@@ -73,12 +75,6 @@ export default function Hero() {
                 Join Waiting List
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </button>
-              <Link
-                href="/contact?interest=founding-partner"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-gray-400 text-white font-medium rounded hover:border-blue-400 hover:text-blue-300 transition-all"
-              >
-                Become an Event Partner
-              </Link>
             </div>
           </div>
         </div>
