@@ -10,6 +10,8 @@ interface WaitingListModalProps {
 
 export default function WaitingListModal({ isOpen, onClose }: WaitingListModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -22,14 +24,25 @@ export default function WaitingListModal({ isOpen, onClose }: WaitingListModalPr
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
+    setSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Unable to join the waiting list.');
+      setSubmitted(true);
       setForm({ name: '', company: '', jobTitle: '', email: '', phone: '' });
-      setSubmitted(false);
-      onClose();
-    }, 3500);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to join the waiting list.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -142,11 +155,14 @@ export default function WaitingListModal({ isOpen, onClose }: WaitingListModalPr
 
               <button
                 type="submit"
+                disabled={submitting}
                 className="w-full py-3 bg-[#2563eb] text-white font-semibold rounded-lg hover:bg-[#1d4ed8] transition-colors flex items-center justify-center gap-2 mt-6"
               >
-                Join Waiting List
+                {submitting ? 'Submitting...' : 'Join Waiting List'}
                 <Send size={15} />
               </button>
+
+              {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
 
               <p className="text-xs text-gray-600 text-center">
                 We respect your privacy. Your details will not be shared.

@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { Image as ImageIcon, Trash2, Download, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { listFiles, deleteFile, getPublicUrl } from '@/lib/storage';
 import type { StorageBucket } from '@/lib/types';
 
 interface FileItem {
@@ -11,6 +10,8 @@ interface FileItem {
   id: string;
   created_at: string;
   metadata: Record<string, any>;
+  path: string;
+  publicUrl: string;
 }
 
 interface ImageGalleryProps {
@@ -18,6 +19,7 @@ interface ImageGalleryProps {
   folder?: string;
   onSelect?: (url: string) => void;
   refreshTrigger?: number;
+  adminToken: string;
 }
 
 export function ImageGallery({
@@ -25,6 +27,7 @@ export function ImageGallery({
   folder,
   onSelect,
   refreshTrigger,
+  adminToken,
 }: ImageGalleryProps) {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,8 +37,14 @@ export function ImageGallery({
     setLoading(true);
     setError(null);
     try {
-      const fileList = await listFiles(bucket, folder);
-      setFiles(fileList);
+      const params = new URLSearchParams({ bucket });
+      if (folder) params.set('folder', folder);
+      const response = await fetch(`/api/media?${params}`, {
+        headers: { 'x-admin-token': adminToken },
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || '加载失败');
+      setFiles(result.files);
     } catch (err) {
       setError(err instanceof Error ? err.message : '加载失败');
     } finally {
@@ -51,8 +60,14 @@ export function ImageGallery({
     if (!confirm('确定要删除这张图片吗？')) return;
 
     try {
-      await deleteFile(bucket, path);
-      setFiles(files.filter((f) => f.name !== path));
+      const response = await fetch('/api/media', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
+        body: JSON.stringify({ bucket, path }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || '删除失败');
+      setFiles(files.filter((f) => f.path !== path));
     } catch (err) {
       alert('删除失败: ' + (err instanceof Error ? err.message : '未知错误'));
     }
@@ -60,14 +75,14 @@ export function ImageGallery({
 
   const handleSelect = (path: string) => {
     if (onSelect) {
-      const url = getPublicUrl(bucket, path);
-      onSelect(url);
+      const file = files.find((item) => item.path === path);
+      if (file) onSelect(file.publicUrl);
     }
   };
 
   const handleDownload = (path: string) => {
-    const url = getPublicUrl(bucket, path);
-    window.open(url, '_blank');
+    const file = files.find((item) => item.path === path);
+    if (file) window.open(file.publicUrl, '_blank');
   };
 
   if (loading) {
@@ -98,8 +113,8 @@ export function ImageGallery({
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {files.map((file) => {
-        const url = getPublicUrl(bucket, folder ? `${folder}/${file.name}` : file.name);
-        const path = folder ? `${folder}/${file.name}` : file.name;
+        const url = file.publicUrl;
+        const path = file.path;
 
         return (
           <div
