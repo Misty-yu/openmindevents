@@ -1,12 +1,9 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Globe, Award, Users, Lightbulb } from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'About | OpenMind Events',
-  description:
-    'Learn about OpenMind Events, the organization behind focused forums for senior HR and business leaders.',
-};
+import Link from 'next/link';
+import { useState } from 'react';
+import { Globe, Award, Users, Lightbulb } from 'lucide-react';
+import WaitingListModal from '@/components/waiting-list-modal';
 
 const values = [
   {
@@ -59,8 +56,12 @@ const team = [
 ];
 
 export default function AboutPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
+      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
       {/* Hero */}
       <section className="pt-32 pb-20 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
@@ -172,12 +173,12 @@ export default function AboutPage() {
             Interested in attending, speaking, sponsoring, or a media
             partnership? We would love to hear from you.
           </p>
-          <Link
-            href="/contact"
+          <button
+            onClick={() => setModalOpen(true)}
             className="inline-flex items-center gap-2 px-7 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
           >
-            Get in Touch
-          </Link>
+            Join Waiting List
+          </button>
         </div>
       </section>
     </>

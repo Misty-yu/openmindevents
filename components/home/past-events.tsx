@@ -14,6 +14,8 @@ const eventImages: EventImage[] = [
   { src: '/images/past-events/openmind-past-event-04.png', alt: 'OpenMind industry forum' },
   { src: '/images/past-events/openmind-past-event-05.png', alt: 'OpenMind guest presentation' },
   { src: '/images/past-events/openmind-past-event-06.png', alt: 'OpenMind audience discussion' },
+  { src: '/images/past-events/openmind-past-event-07.png', alt: 'OpenMind strategy workshop' },
+  { src: '/images/past-events/openmind-past-event-08.png', alt: 'OpenMind boardroom session' },
 ];
 
 function EventImageCard({ image }: { image: EventImage }) {
@@ -48,10 +50,14 @@ export default function PastEvents() {
       })
       .then((result) => {
         if (active && Array.isArray(result.files) && result.files.length > 0) {
-          setImages(result.files.map((file: { publicUrl: string; name: string }) => ({
+          const remoteImages = result.files.map((file: { publicUrl: string; name: string }) => ({
             src: file.publicUrl,
             alt: file.name.replace(/[-_]/g, ' '),
-          })));
+          }));
+          const merged = [...remoteImages, ...eventImages].filter(
+            (image, index, self) => self.findIndex((item) => item.src === image.src) === index
+          );
+          setImages(merged);
         }
       })
       .catch(() => undefined);
