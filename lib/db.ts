@@ -1,95 +1,10 @@
 import { supabase } from './supabase';
-import { uploadSpeakerPhoto, uploadSponsorLogo } from './storage';
+import { uploadSponsorLogo } from './storage';
 import {
-  Speaker,
   Sponsor,
   EventRegistration,
   ContactSubmission,
 } from './types';
-
-// ============= SPEAKERS =============
-
-export async function getSpeakers(): Promise<Speaker[]> {
-  const { data, error } = await supabase
-    .from('speakers')
-    .select('*')
-    .order('created_at', { ascending: false });
-
-  if (error) throw error;
-  return data || [];
-}
-
-export async function getFeaturedSpeakers(): Promise<Speaker[]> {
-  const { data, error } = await supabase
-    .from('speakers')
-    .select('*')
-    .eq('is_featured', true)
-    .order('created_at', { ascending: false });
-
-  if (error) throw error;
-  return data || [];
-}
-
-export async function getSpeaker(id: string): Promise<Speaker | null> {
-  const { data, error } = await supabase
-    .from('speakers')
-    .select('*')
-    .eq('id', id)
-    .maybeSingle();
-
-  if (error) throw error;
-  return data;
-}
-
-export async function createSpeaker(speaker: Omit<Speaker, 'id' | 'created_at' | 'updated_at'>): Promise<Speaker> {
-  const { data, error } = await supabase
-    .from('speakers')
-    .insert([speaker])
-    .select()
-    .single();
-
-  if (error) throw error;
-  return data;
-}
-
-export async function createSpeakerWithPhoto(
-  speaker: Omit<Speaker, 'id' | 'created_at' | 'updated_at' | 'photo_url'>,
-  photoFile?: File
-): Promise<Speaker> {
-  // Create speaker first
-  const { data, error } = await supabase
-    .from('speakers')
-    .insert([speaker])
-    .select()
-    .single();
-
-  if (error) throw error;
-
-  // Upload photo if provided
-  if (photoFile && data.id) {
-    try {
-      const photoUrl = await uploadSpeakerPhoto(photoFile, data.id);
-
-      // Update speaker with photo URL
-      const { data: updated, error: updateError } = await supabase
-        .from('speakers')
-        .update({ photo_url: photoUrl, updated_at: new Date().toISOString() })
-        .eq('id', data.id)
-        .select()
-        .single();
-
-      if (updateError) throw updateError;
-      return updated;
-    } catch (uploadError) {
-      // Photo upload failed, but speaker was created
-      console.error('Photo upload failed:', uploadError);
-      return data;
-    }
-  }
-
-  return data;
-}
-
 // ============= SPONSORS =============
 
 export async function getSponsors(): Promise<Sponsor[]> {

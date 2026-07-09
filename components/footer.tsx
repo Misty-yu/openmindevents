@@ -5,14 +5,13 @@ const footerLinks = {
   forum: [
     { label: 'Forum Overview', href: '/forum' },
     { label: 'Agenda', href: '/agenda' },
-    { label: 'Speakers', href: '/speakers' },
     { label: 'Sponsors & Partners', href: '/sponsors' },
   ],
   resources: [
     { label: 'Industry Insights', href: '/insights' },
     { label: 'About OpenMind', href: '/about' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Become a Speaker', href: '/contact' },
+    { label: 'Become a Partner', href: '/contact' },
   ],
 };
 

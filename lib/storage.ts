@@ -9,11 +9,6 @@ export const BUCKET_CONFIG: Record<StorageBucket, {
   allowedTypes: string[];
   public: boolean;
 }> = {
-  'speakers-photos': {
-    maxSize: 5 * 1024 * 1024, // 5MB
-    allowedTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'],
-    public: true,
-  },
   'sponsor-logos': {
     maxSize: 2 * 1024 * 1024, // 2MB
     allowedTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'],
@@ -181,15 +176,6 @@ export async function listFiles(
   }
 
   return data || [];
-}
-
-/**
- * Upload speaker photo
- */
-export async function uploadSpeakerPhoto(file: File, speakerId?: string): Promise<string> {
-  const path = speakerId ? `${speakerId}/profile` : undefined;
-  const result = await uploadFile(file, 'speakers-photos', path);
-  return result.publicUrl;
 }
 
 /**

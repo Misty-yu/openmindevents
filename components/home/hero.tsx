@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Full-width background image */}
       <img
-        src="https://images.pexels.com/photos/8438958/pexels-photo-8438958.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        src="/images/event2.jpg"
         alt="Human and AI robot collaborating in a professional setting"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />

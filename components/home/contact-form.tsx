@@ -30,7 +30,7 @@ export default function ContactForm() {
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Start Your Journey</h2>
             <p className="text-gray-600 text-sm mb-6">
-              Interested in attending, speaking, or partnering? Reach out to our team — we'll get
+              Interested in attending, speaking, or partnering? Reach out to our team — we&apos;ll get
               back to you with forum details and next steps.
             </p>
 

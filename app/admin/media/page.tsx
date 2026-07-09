@@ -18,7 +18,7 @@ export default function MediaManagementPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mt-20 mb-2">媒体库管理</h1>
-        <p className="text-gray-600">上传和管理活动图片、演讲者照片、赞助商Logo</p>
+        <p className="text-gray-600">上传和管理活动图片、赞助商Logo、文档</p>
       </div>
 
       {selectedUrl && (
@@ -34,50 +34,12 @@ export default function MediaManagementPage() {
         </Card>
       )}
 
-      <Tabs defaultValue="speakers" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
-          <TabsTrigger value="speakers">演讲者照片</TabsTrigger>
+      <Tabs defaultValue="sponsors" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-3 lg:w-auto lg:inline-grid">
           <TabsTrigger value="sponsors">赞助商Logo</TabsTrigger>
           <TabsTrigger value="events">活动图片</TabsTrigger>
           <TabsTrigger value="documents">文档</TabsTrigger>
         </TabsList>
-
-        <TabsContent value="speakers" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>上传演讲者照片</CardTitle>
-              <CardDescription>
-                支持 JPG, PNG, WebP 格式，最大 5MB
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ImageUpload
-                bucket="speakers-photos"
-                onUpload={(url) => {
-                  setSelectedUrl(url);
-                  handleUploadComplete();
-                }}
-                folder="speakers"
-                accept="image/jpeg,image/jpg,image/png,image/webp"
-              />
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>已上传的照片</CardTitle>
-              <CardDescription>点击图片进行操作</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ImageGallery
-                bucket="speakers-photos"
-                folder="speakers"
-                refreshTrigger={refreshKey}
-                onSelect={(url) => setSelectedUrl(url)}
-              />
-            </CardContent>
-          </Card>
-        </TabsContent>
 
         <TabsContent value="sponsors" className="space-y-6">
           <Card>
@@ -220,7 +182,7 @@ export default function MediaManagementPage() {
       <div className="mt-8 p-4 bg-gray-50 rounded-lg">
         <h2 className="font-semibold mb-2">使用说明</h2>
         <ol className="text-sm text-gray-600 space-y-1 list-decimal list-inside">
-          <li>选择对应的标签页（演讲者照片/赞助商Logo/活动图片）</li>
+          <li>选择对应的标签页（赞助商Logo/活动图片）</li>
           <li>点击虚线框上传图片，或拖拽图片到框内</li>
           <li>上传完成后，图片会显示在下方的图库中</li>
           <li>鼠标悬停在图片上可以：选择/下载/删除</li>

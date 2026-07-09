@@ -1,7 +1,7 @@
 // Database types for OpenMind Forum
 
 // Storage bucket types
-export type StorageBucket = 'speakers-photos' | 'sponsor-logos' | 'event-images' | 'documents';
+export type StorageBucket = 'sponsor-logos' | 'event-images' | 'documents';
 
 export interface UploadResult {
   path: string;
@@ -13,19 +13,6 @@ export interface FileUpload {
   file: File;
   bucket: StorageBucket;
   path?: string;
-}
-
-// Database types
-export interface Speaker {
-  id: string;
-  name: string;
-  title?: string;
-  company?: string;
-  bio?: string;
-  photo_url?: string;
-  is_featured: boolean;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface Sponsor {

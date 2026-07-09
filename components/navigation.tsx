@@ -9,7 +9,6 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Forum 2026', href: '/forum' },
   { label: 'Agenda', href: '/agenda' },
-  { label: 'Speakers', href: '/speakers' },
   { label: 'Sponsors', href: '/sponsors' },
   { label: 'News', href: '/insights' },
   { label: 'Contact', href: '/contact' },
