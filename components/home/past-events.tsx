@@ -7,27 +7,13 @@ interface EventImage {
   alt: string;
 }
 
-const localImages: EventImage[] = [
-  {
-    src: '/images/event1.jpg',
-    alt: 'OpenMind Summit 2025 - Stage & Podium',
-  },
-  {
-    src: '/images/event2.jpg',
-    alt: 'OpenMind Team Leaders & Networking',
-  },
-  {
-    src: '/images/event3.jpg',
-    alt: 'OpenMind Speaker Presentation',
-  },
-  {
-    src: '/images/event4.jpg',
-    alt: 'OpenMind Keynote & Audience',
-  },
-  {
-    src: '/images/event5.jpg',
-    alt: 'OpenMind Conference & Attendees',
-  },
+const eventImages: EventImage[] = [
+  { src: '/images/past-events/openmind-past-event-01.png', alt: 'OpenMind previous event' },
+  { src: '/images/past-events/openmind-past-event-02.png', alt: 'OpenMind panel discussion' },
+  { src: '/images/past-events/openmind-past-event-03.png', alt: 'OpenMind conference session' },
+  { src: '/images/past-events/openmind-past-event-04.png', alt: 'OpenMind industry forum' },
+  { src: '/images/past-events/openmind-past-event-05.png', alt: 'OpenMind guest presentation' },
+  { src: '/images/past-events/openmind-past-event-06.png', alt: 'OpenMind audience discussion' },
 ];
 
 function EventImageCard({ image }: { image: EventImage }) {
@@ -51,7 +37,28 @@ function EventImageCard({ image }: { image: EventImage }) {
 
 export default function PastEvents() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [images] = useState<EventImage[]>(localImages);
+  const [images, setImages] = useState<EventImage[]>(eventImages);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/media?bucket=event-images&folder=past-events')
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Unable to load event images');
+        return response.json();
+      })
+      .then((result) => {
+        if (active && Array.isArray(result.files) && result.files.length > 0) {
+          setImages(result.files.map((file: { publicUrl: string; name: string }) => ({
+            src: file.publicUrl,
+            alt: file.name.replace(/[-_]/g, ' '),
+          })));
+        }
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -77,12 +84,6 @@ export default function PastEvents() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-900">Our Previous Events</h2>
-          <a
-            href="/admin/media"
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-          >
-            Manage Images →
-          </a>
         </div>
       </div>
       <div
@@ -92,15 +93,6 @@ export default function PastEvents() {
         {images.map((img, i) => (
           <EventImageCard key={i} image={img} />
         ))}
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <p className="text-xs text-gray-500">
-          Upload your event images via the{' '}
-          <a href="/admin/media" className="text-blue-600 hover:underline">
-            Media Library
-          </a>{' '}
-          (use the 活动图片 tab and put them in the past-events folder)
-        </p>
       </div>
     </section>
   );

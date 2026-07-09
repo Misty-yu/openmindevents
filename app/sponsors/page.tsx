@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Check } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Sponsors & Partners | OpenMind Workforce Transformation Forum 2026',
+  title: 'Sponsors & Partners | OpenMind AI Workforce Transformation Forum 2026',
   description:
-    'Partner with OpenMind Workforce Transformation Forum 2026 and reach 500+ senior HR and business leaders.',
+    'Partner with OpenMind AI Workforce Transformation Forum 2026 and engage with 50 senior business and HR leaders.',
 };
 
 const packages = [
@@ -87,7 +87,7 @@ const packages = [
 ];
 
 const audiences = [
-  { label: '500+', desc: 'Senior Leaders' },
+  { label: '50', desc: 'Senior Leaders' },
   { label: '30+', desc: 'Countries' },
   { label: '60%+', desc: 'C-Suite & VP Level' },
   { label: '85%', desc: 'Decision-Maker Budget Authority' },
