@@ -7,7 +7,7 @@
 ## 变更范围
 
 1. 首页 Hero 使用 Notion 提供的新主图，素材保存到 `public/images`。
-2. 首页历史活动区使用 Notion 提供的新图片，素材保存到 `public/images`，页面不再依赖 Supabase 线上图片才能展示本次内容。
+2. 首页历史活动区使用 Notion 提供的新图片，素材保存到 `public/images` 并直接从本地加载。
 3. Agenda 保留现有网页版式，仅按 Notion 中的 Word 附件更新议程文字和时间。
 4. Speakers 功能完整移除：首页区块、独立页面、顶部导航、页脚入口以及不再使用的首页组件。
 

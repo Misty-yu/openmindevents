@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import {
   Brain,
   Users,
@@ -9,9 +6,7 @@ import {
   Target,
   Globe,
   Award,
-  ArrowRight,
 } from 'lucide-react';
-import WaitingListModal from '@/components/waiting-list-modal';
 
 const pillars = [
   {
@@ -62,12 +57,8 @@ const formats = [
 ];
 
 export default function ForumPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <>
-      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
       {/* Hero */}
       <section className="pt-32 pb-20 bg-white relative overflow-hidden">
         <div
@@ -90,12 +81,6 @@ export default function ForumPage() {
               How AI Agents Are Reshaping Organizations, Talent and Leadership
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
-              >
-                Register Interest <ArrowRight size={15} />
-              </button>
               <Link
                 href="/agenda"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-900 font-medium rounded hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
@@ -174,26 +159,6 @@ export default function ForumPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-gray-900">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Secure Your Place at the Table
-          </h2>
-          <p className="text-gray-300 mb-8 leading-relaxed">
-            Delegate places are strictly limited to maintain the quality of
-            dialogue. Early expressions of interest are encouraged.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="px-7 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
-            >
-              Register Interest
-            </button>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

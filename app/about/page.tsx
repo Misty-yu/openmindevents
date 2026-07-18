@@ -1,9 +1,4 @@
-'use client';
-
-import Link from 'next/link';
-import { useState } from 'react';
 import { Globe, Award, Users, Lightbulb } from 'lucide-react';
-import WaitingListModal from '@/components/waiting-list-modal';
 
 const values = [
   {
@@ -56,12 +51,8 @@ const team = [
 ];
 
 export default function AboutPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <>
-      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
       {/* Hero */}
       <section className="pt-32 pb-20 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
@@ -163,24 +154,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-gray-900">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Work With OpenMind Events
-          </h2>
-          <p className="text-gray-400 mb-7 text-sm">
-            Interested in attending, speaking, sponsoring, or a media
-            partnership? We would love to hear from you.
-          </p>
-          <button
-            onClick={() => setModalOpen(true)}
-            className="inline-flex items-center gap-2 px-7 py-3 bg-[#2563eb] text-white font-semibold rounded hover:bg-[#1d4ed8] transition-colors"
-          >
-            Join Waiting List
-          </button>
-        </div>
-      </section>
     </>
   );
 }

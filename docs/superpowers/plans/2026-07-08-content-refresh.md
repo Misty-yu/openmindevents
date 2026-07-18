@@ -41,8 +41,8 @@
 - Modify: `components/home/past-events.tsx`
 
 - [ ] Change the Hero `backgroundImage` URL to `/images/openmind-home-hero-ai-collaboration-1600x900.png`.
-- [ ] Replace `PastEvents` Supabase loading with a fixed `EventImage[]` containing `/images/past-events/openmind-past-event-01.png` through `-06.png`.
-- [ ] Remove the Media Library management link, upload hint, Supabase import, loading state, and remote fallback images from the public homepage component.
+- [ ] Configure `PastEvents` with a fixed `EventImage[]` containing `/images/past-events/openmind-past-event-01.png` through `-06.png`.
+- [ ] Keep the homepage gallery local-only with bundled images and a loading state.
 - [ ] Run `npm run typecheck`; expect exit code 0.
 
 ### Task 3: Replace Agenda data

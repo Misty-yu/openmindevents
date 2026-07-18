@@ -1,8 +1,4 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import WaitingListModal from '@/components/waiting-list-modal';
 
 const tiers = [
   {
@@ -44,13 +40,8 @@ const tiers = [
 ];
 
 export default function SponsorsPreview() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
-    <>
-      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
-      <section className="py-20 bg-white">
+    <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-3">
@@ -104,7 +95,6 @@ export default function SponsorsPreview() {
             </Link>
           </div>
         </div>
-      </section>
-    </>
+    </section>
   );
 }

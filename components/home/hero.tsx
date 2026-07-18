@@ -1,17 +1,8 @@
-'use client';
-
-import { useState } from 'react';
-import { ArrowRight, Calendar, MapPin, Users } from 'lucide-react';
-import WaitingListModal from '@/components/waiting-list-modal';
+import { Calendar, MapPin, Users } from 'lucide-react';
 
 export default function Hero() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
-    <>
-      <WaitingListModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
         {/* Background image with darker overlay for text legibility */}
         <div
           className="absolute inset-0"
@@ -66,19 +57,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2563eb] text-white font-semibold rounded hover:bg-blue-500 transition-all hover:gap-3 group"
-              >
-                Join Waiting List
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-              </button>
-            </div>
           </div>
         </div>
-      </section>
-    </>
+    </section>
   );
 }

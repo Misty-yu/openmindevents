@@ -39,32 +39,6 @@ function EventImageCard({ image }: { image: EventImage }) {
 
 export default function PastEvents() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = useState<EventImage[]>(eventImages);
-
-  useEffect(() => {
-    let active = true;
-    fetch('/api/media?bucket=event-images&folder=past-events')
-      .then(async (response) => {
-        if (!response.ok) throw new Error('Unable to load event images');
-        return response.json();
-      })
-      .then((result) => {
-        if (active && Array.isArray(result.files) && result.files.length > 0) {
-          const remoteImages = result.files.map((file: { publicUrl: string; name: string }) => ({
-            src: file.publicUrl,
-            alt: file.name.replace(/[-_]/g, ' '),
-          }));
-          const merged = [...remoteImages, ...eventImages].filter(
-            (image, index, self) => self.findIndex((item) => item.src === image.src) === index
-          );
-          setImages(merged);
-        }
-      })
-      .catch(() => undefined);
-    return () => {
-      active = false;
-    };
-  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -96,7 +70,7 @@ export default function PastEvents() {
         ref={scrollRef}
         className="flex gap-4 overflow-hidden px-4 sm:px-6 lg:px-8"
       >
-        {images.map((img, i) => (
+        {eventImages.map((img, i) => (
           <EventImageCard key={i} image={img} />
         ))}
       </div>
